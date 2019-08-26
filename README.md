@@ -1,11 +1,9 @@
-# project-co_locators
-Co-locate oceanographic data by establishing constraints
+# Project-Co_locators
+=======
 
-Yeray Santana Falcon
-Laura Gomez Navarro
+# Co-locate oceanographic data by establishing constraints
+
 <<<<<<< HEAD
-Molly James
-
 =======
 Shikhar Rai
 <<<<<<< HEAD
@@ -15,3 +13,16 @@ Mathew Biddle
 >>>>>>> 3392e9458b21689a3c6003a050b28f8be1850ad3
 
 Sophie Chu
+something
+=======
+
+Yeray Santana Falcon <br />
+Laura Gomez Navarro  <br />
+Molly James  <br />
+Shikhar Rai  <br />
+Mathew Biddle  <br />
+Will Oestreich <br />
+Pedro Magaña <br />
+Micah Wengren <br />
+Jazlyn Natalie <br />
+>>>>>>> 14671d4020f3b193822be9e276ccd178457716ad
