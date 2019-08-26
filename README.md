@@ -6,4 +6,5 @@ Laura Gomez Navarro  <br />
 Molly James  <br />
 Shikhar Rai  <br />
 Mathew Biddle  <br />
-Will Oestreich
+Will Oestreich <br />
+Pedro Magaña <br />
