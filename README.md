@@ -1,5 +1,7 @@
 # project-co_locators
 Co-locate oceanographic data by establishing constraints
 
-Contributors:
+Yeray Santana Falcon
+Laura Gomez Navarro
 Molly James
+
