@@ -1,5 +1,5 @@
-### Project-Co_locators
-=======
+Project-Co_locators
+=======================
 
 ### Collaborators on this project
 Sophie Chu <br />
@@ -20,14 +20,15 @@ Co-locate oceanographic data by establishing constraints.
 ### Application example
 
 ### Specific tasks
-- [] Collect spacial-temporal bounds.
-- [] Build query url.
-- [] Do the search.
-- [] Manage response.
+- [ ] Collect spacial-temporal bounds.
+- [ ] Build query url.
+- [ ] Do the search.
+- [ ] Manage response.
 
 ### Existing methods
 - The Irish Marine Institute has developed a keyword search across existing ERDDAP
   servers: https://github.com/IrishMarineInstitute/search-erddaps
+  - Here is the list of all ERDDAP's they use: https://github.com/IrishMarineInstitute/search-erddaps/blob/master/erddaps.json
 - OHW18 built a search interface for one ERDDAP server: https://github.com/oceanhackweek/ohw18_erddap-explorer
  
 
@@ -35,7 +36,8 @@ Co-locate oceanographic data by establishing constraints.
 - Jupyter
 - Python
   - erddapy: https://github.com/ioos/erddapy
-- ? 
+  - Pandas? 
+- ?
 
 ### Background reading
 
