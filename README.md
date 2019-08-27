@@ -29,17 +29,17 @@ A user is interested in all the available oceanographic data in a region where a
 - [ ] Manage response.
 
 ### Existing methods
-- The Irish Marine Institute has developed a keyword search across existing ERDDAP
-  servers: https://github.com/IrishMarineInstitute/search-erddaps
-  - Here is the list of all ERDDAP's they use: https://github.com/IrishMarineInstitute/search-erddaps/blob/master/erddaps.json
-- OHW18 built a search interface for one ERDDAP server: https://github.com/oceanhackweek/ohw18_erddap-explorer
+- The Irish Marine Institute has developed a [keyword search across existing ERDDAP
+  servers](https://github.com/IrishMarineInstitute/search-erddaps)
+  - [Here is the list of all ERDDAP's they use.](https://github.com/IrishMarineInstitute/search-erddaps/blob/master/erddaps.json)
+- OHW18 built a [search interface for one ERDDAP server](https://github.com/oceanhackweek/ohw18_erddap-explorer)
  
 
 ### Proposed methods/tools
 - Jupyter
 - Python
-  - erddapy: https://github.com/ioos/erddapy
-  - Pandas? 
+  - [erddapy](https://github.com/ioos/erddapy)
+  - [Pandas](https://pandas.pydata.org/pandas-docs/stable/getting_started/overview.html)? 
 - ?
 
 ### Background reading
