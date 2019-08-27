@@ -1,0 +1,80 @@
+[
+  {
+    "url": "https://coastwatch.pfeg.noaa.gov/erddap/"
+  },
+  {
+    "url": "https://apdrc.soest.hawaii.edu/erddap/"
+  },
+  {
+    "url": "https://erddap.bco-dmo.org/erddap/"
+  },
+  {
+    "url": "http://erddap.emodnet-physics.eu/erddap/"
+  },
+  {
+    "url": "https://erddap.marine.ie/erddap/"
+  },
+  {
+    "url": "https://cwcgom.aoml.noaa.gov/erddap/"
+  },
+  {
+    "url": "http://erddap.sensors.ioos.us/erddap/"
+  },
+  {
+    "url": "http://erddap.axiomdatascience.com/erddap/"
+  },
+  {
+    "url": "http://www.neracoos.org/erddap/"
+  },
+  {
+    "url": "https://data.ioos.us/gliders/erddap/"
+  },
+  {
+    "url": "http://oos.soest.hawaii.edu/erddap/"
+  },
+  {
+    "url": "http://sccoos.org/erddap/"
+  },
+  {
+    "url": "http://erddap.secoora.org/erddap/"
+  },
+  {
+    "url": "https://ecowatch.ncddc.noaa.gov/erddap/"
+  },
+  {
+    "url": "http://osmc.noaa.gov/erddap/"
+  },
+  {
+    "url": "http://dap.onc.uvic.ca/erddap/"
+  },
+  {
+    "url": "https://oceanwatch.pifsc.noaa.gov/erddap/"
+  },
+  {
+    "url": "https://erddap-uncabled.oceanobservatories.org/uncabled/erddap/"
+  },
+  {
+    "url": "https://members.oceantrack.org/erddap/"
+  },
+  {
+    "url": "http://www.myroms.org:8080/erddap/"
+  },
+  {
+    "url": "http://tds.marine.rutgers.edu/erddap/"
+  },
+  {
+    "url": "http://sfbaynutrients.sfei.org/erddap/"
+  },
+  {
+    "url": "https://spraydata.ucsd.edu/erddap/"
+  },
+  {
+    "url": "https://salishsea.eos.ubc.ca/erddap/"
+  },
+  {
+    "url": "http://bmlsc.ucdavis.edu:8080/erddap/"
+  },
+  {
+    "url": "https://upwell.pfeg.noaa.gov/erddap/"
+  }
+]
