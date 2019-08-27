@@ -18,9 +18,12 @@ Jazlyn Natalie <br />
 Co-locate oceanographic data by establishing constraints.
 
 ### Application example
+A user is interested in all the available oceanographic data in a region where an eddy just formed. They provide the geospatial bounds of the region and a temporal range and get an aggregated response of all available data.
 
 ### Specific tasks
-- [ ] Collect spacial-temporal bounds.
+- [ ] Collect temporal bounds.
+- [ ] Collect spatial bounds.
+- [ ] _Collect keywords?_
 - [ ] Build query url.
 - [ ] Do the search.
 - [ ] Manage response.
