@@ -3,8 +3,6 @@
 
 # Co-locate oceanographic data by establishing constraints
 
-Shikhar Rai <br />
-Mathew Biddle <br />
 Sophie Chu <br />
 Hannah Blondin <br />
 Yeray Santana Falcon <br />
