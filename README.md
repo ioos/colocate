@@ -3,10 +3,10 @@
 
 # Co-locate oceanographic data by establishing constraints
 
-Shikhar Rai
-Mathew Biddle
-Sophie Chu
-Hannah Blondin
+Shikhar Rai <br />
+Mathew Biddle <br />
+Sophie Chu <br />
+Hannah Blondin <br />
 Yeray Santana Falcon <br />
 Laura Gomez Navarro  <br />
 Molly James  <br />
