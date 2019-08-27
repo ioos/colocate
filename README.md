@@ -6,6 +6,7 @@
 Shikhar Rai
 Mathew Biddle
 Sophie Chu
+Hannah Blondin
 Yeray Santana Falcon <br />
 Laura Gomez Navarro  <br />
 Molly James  <br />
