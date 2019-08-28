@@ -2,17 +2,17 @@ Project-Co_locators
 =======================
 
 ### Collaborators on this project
-Sophie Chu <br />
 Hannah Blondin <br />
+Mathew Biddle <br />
+Sophie Chu <br />
 Yeray Santana Falcon <br />
-Laura Gomez Navarro  <br />
-Molly James  <br />
-Shikhar Rai  <br />
-Mathew Biddle  <br />
-Will Oestreich <br />
+Molly James <br />
 Pedro Magaña <br />
-Micah Wengren <br />
 Jazlyn Natalie <br />
+Laura Gomez Navarro  <br />
+Will Oestreich <br />
+Shikhar Rai  <br />
+Micah Wengren <br />
 
 ### The problem
 Co-locate oceanographic data by establishing constraints.
