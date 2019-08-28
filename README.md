@@ -33,6 +33,7 @@ A user is interested in all the available oceanographic data in a region where a
   servers](https://github.com/IrishMarineInstitute/search-erddaps)
   - [Here is the list of all ERDDAP's they use.](https://github.com/IrishMarineInstitute/search-erddaps/blob/master/erddaps.json)
 - OHW18 built a [search interface for one ERDDAP server](https://github.com/oceanhackweek/ohw18_erddap-explorer)
+- yodapy: https://github.com/cormorack/yodapy
  
 
 ### Proposed methods/tools
