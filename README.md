@@ -2,8 +2,8 @@ Project-Co_locators
 =======================
 
 ### Collaborators on this project
-Hannah Blondin <br />
 Mathew Biddle <br />
+Hannah Blondin <br />
 Sophie Chu <br />
 Yeray Santana Falcon <br />
 Molly James <br />
