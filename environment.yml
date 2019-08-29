@@ -1,0 +1,19 @@
+name: colocators-ohw19
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.7
+  - jupyter
+  - jupyterlab
+  - ipyleaflet
+  - compliance-checker
+  - pandas
+  - requests
+  - erddapy
+  - cartopy
+  - matplotlib
+  - numpy
+  - palettable
+  - iris
+  - folium

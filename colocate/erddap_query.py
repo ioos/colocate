@@ -41,6 +41,15 @@ def query(url, **kw):
         print("Bad ERDDAP!!! {}".format(url))
     except requests.exceptions.SSLError as e:
         print("Bad ERDDAP!!! {}".format(url))
+    except OpenSSL.SSL.Error as e:
+        print("Bad ERDDAP!!! {}".format(url))
+    except ssl.SSLError as e:
+        print("Bad ERDDAP!!! {}".format(url))
+    except urllib3.exceptions.MaxRetryError as e:
+        print("Bad ERDDAP!!! {}".format(url))
+
+
+
 
 
 

@@ -1,4 +1,13 @@
+jupyter
+jupyterlab
+ipyleaflet
 compliance-checker
 pandas
 requests
 erddapy
+cartopy
+matplotlib
+numpy
+palettable
+iris
+folium

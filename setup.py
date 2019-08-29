@@ -7,9 +7,9 @@ def readme():
         return f.read()
 
 kwargs = {
-    'name': 'co-locate',
+    'name': 'colocate',
     'author': 'OHW 2019 Team Co-Locators!!!',
-    'author_email': 'ohw@ohw.org',
+    'author_email': 'noreply@co-locators-ohw19.org',
     'url': 'https://github.com/oceanhackweek/ohw19-project-co_locators',
     'description': 'A utility for aggregating co-located ERDDAP datasets in space and time and \
         doing some cool stuff',
