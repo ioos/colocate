@@ -9,7 +9,7 @@ from datetime import date, timedelta
 
 m = Map(zoom=2)
 
-dc = DrawControl(rectangle={'shapeOptions': {'color': '#0000FF'}})
+dc = DrawControl(polyline={}, polygon={}, circlemarker={}, rectangle={'shapeOptions': {'color': '#0000FF'}})
 
 kw = {}
 coords = []
