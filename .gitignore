@@ -1,0 +1,6 @@
+*.pyc
+*.out
+*.log
+**/*.pyc
+**/*.csv
+**/*.out
