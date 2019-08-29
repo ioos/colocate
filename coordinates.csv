@@ -1,0 +1,8 @@
+,latitude (degrees_north),longitude (degrees_east),dataset_count,dataset_download_url,Dataset ID
+0,39.025,-71.711,1,"https://coastwatch.pfeg.noaa.gov/erddap/tabledap/erdGtsppBest.csv?latitude,longitude&time>=1468108800.0&time<=1470787200.0&longitude>=-72.0&longitude<=-69&latitude>=38&latitude<=41&distinct()",erdGtsppBest
+1,39.244,-71.315,1,"https://coastwatch.pfeg.noaa.gov/erddap/tabledap/erdGtsppBest.csv?latitude,longitude&time>=1468108800.0&time<=1470787200.0&longitude>=-72.0&longitude<=-69&latitude>=38&latitude<=41&distinct()",erdGtsppBest
+2,39.296,-70.464,1,"https://coastwatch.pfeg.noaa.gov/erddap/tabledap/erdGtsppBest.csv?latitude,longitude&time>=1468108800.0&time<=1470787200.0&longitude>=-72.0&longitude<=-69&latitude>=38&latitude<=41&distinct()",erdGtsppBest
+3,39.645,-71.664,1,"https://coastwatch.pfeg.noaa.gov/erddap/tabledap/erdGtsppBest.csv?latitude,longitude&time>=1468108800.0&time<=1470787200.0&longitude>=-72.0&longitude<=-69&latitude>=38&latitude<=41&distinct()",erdGtsppBest
+4,39.668,-70.735,1,"https://coastwatch.pfeg.noaa.gov/erddap/tabledap/erdGtsppBest.csv?latitude,longitude&time>=1468108800.0&time<=1470787200.0&longitude>=-72.0&longitude<=-69&latitude>=38&latitude<=41&distinct()",erdGtsppBest
+5,39.705999999999996,-71.464,1,"https://coastwatch.pfeg.noaa.gov/erddap/tabledap/erdGtsppBest.csv?latitude,longitude&time>=1468108800.0&time<=1470787200.0&longitude>=-72.0&longitude<=-69&latitude>=38&latitude<=41&distinct()",erdGtsppBest
+0,40.503,-69.248,3,"http://erddap.emodnet-physics.eu/erddap/tabledap/EP_INSITU_DRYT_TS.csv?latitude,longitude&time>=1468108800.0&time<=1470787200.0&longitude>=-72.0&longitude<=-69&latitude>=38&latitude<=41&distinct()",EP_INSITU_DRYT_TS
