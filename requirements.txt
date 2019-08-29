@@ -9,5 +9,5 @@ cartopy
 matplotlib
 numpy
 palettable
-iris
+#iris
 folium
