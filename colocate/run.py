@@ -13,7 +13,7 @@ def ui_query(kw):
     print("\n\n********Run ERDDAP Advanced Serach via erddapy to find datasets***********")
     print(len(servers))
 
-    for server in servers:
+    for server in servers[:-1]:
         print("url: {}".format(server['url']))
 
         ds = query(server['url'], **kw)
@@ -32,10 +32,11 @@ def get_erddaps():
     try:
         #servers = json.loads(requests.get('https://raw.githubusercontent.com/IrishMarineInstitute/search-erddaps/master/erddaps.json').text)
         servers = json.loads(requests.get('https://raw.githubusercontent.com/IrishMarineInstitute/awesome-erddap/master/erddaps.json').text)
-        print(servers)
+        #print(servers)
     except Exception as e:
         return None
 
+    print("Can I haz ERDDAPs???")
     for server in servers:
         print("name: {}\nurl: {}\npublic: {}".format(server['name'], server['url'], server['public']))
 

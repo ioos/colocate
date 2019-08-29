@@ -40,17 +40,21 @@ def query(url, **kw):
         #ds = e.to_pandas()
         #return ds
 
-    except requests.exceptions.RequestException as e:
+    except requests.exceptions.RequestException as ex:
         print("Bad ERDDAP!!! {}".format(url))
+        #print(e.get_search_url(**kw))
         print("Encountered: requests.exceptions.RequestException")
-    except requests.exceptions.ConnectTimeout as e:
+    except requests.exceptions.ConnectTimeout as ex:
         print("Bad ERDDAP!!! {}".format(url))
+        #print(e.get_search_url(**kw))
         print("Encountered: requests.exceptions.ConnectTimeout")
-    except requests.exceptions.ConnectionError as e:
+    except requests.exceptions.ConnectionError as ex:
         print("Bad ERDDAP!!! {}".format(url))
+        #print(e.get_search_url(**kw))
         print("Encountered: requests.exceptions.ConnectTimeout")
-    except urllib3.exceptions.NewConnectionError as e:
+    except urllib3.exceptions.NewConnectionError as ex:
         print("Bad ERDDAP!!! {}".format(url))
+        #print(e.get_search_url(**kw))
         print("Encountered: requests.exceptions.ConnectTimeout")
 
     return None
