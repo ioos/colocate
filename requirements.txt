@@ -1,6 +1,7 @@
 jupyter
 jupyterlab
 ipyleaflet
+ipywidgets
 compliance-checker
 pandas
 requests

@@ -5,13 +5,34 @@ import pandas as pd
 
 from .erddap_query import query
 
-def main():
+def ui_query(kw):
+    servers = get_erddaps()
+
+    all_datasets=pd.DataFrame()
+
+    print("\n\n********Run ERDDAP Advanced Serach via erddapy to find datasets***********")
+    print(len(servers))
+
+    for server in servers:
+        print("url: {}".format(server['url']))
+
+        ds = query(server['url'], **kw)
+
+        #datasets = ds[['server','Dataset ID','tabledap']]
+        #datasets.dropna(subset=['tabledap'],inplace=True)
+        all_datasets = pd.concat([all_datasets,ds])
+
+
+        print(all_datasets.head())
+    return all_datasets
+
+
+
+def get_erddaps():
     """
-    Entrypoint
+    Query the master ERDDAP server list here: https://github.com/IrishMarineInstitute/awesome-erddap/blob/master/erddaps.js
     """
     servers = None
-
-
     # download master ERDDAP server list:
     try:
         #servers = json.loads(requests.get('https://raw.githubusercontent.com/IrishMarineInstitute/search-erddaps/master/erddaps.json').text)
@@ -22,6 +43,16 @@ def main():
 
     for server in servers:
         print("name: {}\nurl: {}\npublic: {}".format(server['name'], server['url'], server['public']))
+
+    return servers
+
+
+def main():
+    """
+    Entrypoint
+    """
+    servers = get_erddaps()
+
 
     # define parameters (placeholder)
     time_min = '2010-07-10T00:00:00Z'
