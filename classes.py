@@ -1,3 +1,31 @@
+class constraintClass:
+    def __init__(self):
+        self.time_min = '2010-07-10T00:00:00Z'
+        self.time_max = '2016-08-10T00:00:00Z'
+        self.lon_min = -72.0
+        self.lon_max = -69.0
+        self.lat_min = 38.0
+        self.lat_max = 41.0
+
+    def updateTimeMin(self, timeMin):
+        self.time_min = timeMin
+
+    def updateTimeMax(self, timeMax):
+        self.time_max = timeMax
+
+    def updatelonMin(self, lonMin):
+        self.lon_min = lonMin
+
+    def updatelonMax(self, lonMax):
+        self.lon_max = lonMax
+
+    def updatelatMin(self, latMin):
+        self.lat_min = latMin
+
+    def updatelatMax(self, latMax):
+        self.lat_max = latMax
+
+
 class dataSetsClass:
     def __init__(self):
         self.dataset_ID = []

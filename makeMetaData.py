@@ -44,10 +44,6 @@ def update_tableGridWms_Info(metaData):
         wmsNum = 0
         try:
             e = ERDDAP(server=url)
-            e2.variables = [
-                        "latitude",
-                        "longitude",
-                    ]
             ### csv to pandas dataset for all datasets
             df = pd.read_csv(e.get_search_url(response='csv', search_for='all'))
             ### printing number of datasets
@@ -77,10 +73,6 @@ def fill_info_in_meta_acc_to_constrains(metaData,kw):
                 server=server.url,
                 response='csv'
             )
-            e2.variables = [
-                "latitude",
-                "longitude",
-            ]
             df = pd.read_csv(e.get_search_url(response='csv', **kw))
             noerr = True
         except:  # requests.exceptions.RequestException as err:
@@ -103,8 +95,8 @@ def fill_info_in_meta_acc_to_constrains(metaData,kw):
 ###################################################
 
 
-def fill_lat_lonValue_to_Dataset(metaData, constraints):
-    for server_count in range(1):#(len(metaData.servers)):
+def fill_lat_lonValue_to_AllDataset(metaData,kw, constraints):
+    for server_count in range(len(metaData.servers)):
         server = metaData.servers[server_count]
         df = pd.DataFrame()
         elist = []
@@ -114,9 +106,6 @@ def fill_lat_lonValue_to_Dataset(metaData, constraints):
                 server=server.url,
                 response='csv'
             )
-            kw ={
-                
-            }
             df = pd.read_csv(e.get_search_url(response='csv', **kw))
             elist.append(e)
             noerr = True
@@ -124,12 +113,87 @@ def fill_lat_lonValue_to_Dataset(metaData, constraints):
             noerr = False
 
         if noerr:
-            for dataset_count in range(1):#(len(server.datasets)):
+            for dataset_count in range(len(server.datasets)):
                 dataset = server.datasets[dataset_count]
                 if dataset.datasetType == 'tabledap':
                     e2 = elist[0]
                     e2.dataset_id = dataset.dataset_ID
                     e2.protocol = "tabledap"
+                    e2.constraints = {
+                        "time>=": constraints.time_min,
+                        "time<=": constraints.time_max,
+                        "longitude>=": constraints.lon_min,
+                        "longitude<=": constraints.lon_max,
+                        "latitude>=": constraints.lat_min,
+                        "latitude<=": constraints.lat_max
+                    }
+                    e2.variables = [
+                        'latitude',
+                        'longitude',
+                        'pressure',
+                    ] 
+                    try:
+                        download_url = e.get_download_url()
+                        df = e2.to_pandas().dropna()
+                        dataset.lon = df["longitude (degrees_east)"]
+                        dataset.lat = df["latitude (degrees_north)"]
+                    except:
+                        print('could not get lon lat for dataset '+ \
+                            dataset.dataset_ID + ' in server ' + server.url)
+                else:
+                    print('dataset '+ dataset.dataset_ID + ' in server ' + server.url + \
+                            ' not tabledap')
+                
+                server.datasets[dataset_count] = dataset
+        else:
+            'Server error. This should have been resolved. Check code'
+        
+        metaData.servers[server_count] = server
+    
+    return metaData
+
+
+def fill_lat_lonValue_to_Dataset(server, dataset, kw, constraints):
+        df = pd.DataFrame()
+        elist = []
+        try:
+            #r.raise_for_status()
+            e = ERDDAP(
+                server=server.url,
+                response='csv'
+            )
+            df = pd.read_csv(e.get_search_url(response='csv', **kw))
+            elist.append(e)
+            noerr = True
+        except:  # requests.exceptions.RequestException as err:
+            noerr = False
+
+        if noerr:
+            isInServer = False
+            for dataset_count in range(len(server.datasets)):
+                if server.datasets[dataset_count].dataset_ID == dataset.dataset_ID:
+                    isInServer = True
+                    break
+                    
+            if isInServer:    
+                dataset = server.datasets[dataset_count]
+                if dataset.datasetType == 'tabledap':
+                    e2 = elist[0]
+                    e2.dataset_id = dataset.dataset_ID
+                    e2.protocol = "tabledap"
+                    e2.constraints = {
+                        "time>=": constraints.time_min,
+                        "time<=": constraints.time_max,
+                        "longitude>=": constraints.lon_min,
+                        "longitude<=": constraints.lon_max,
+                        "latitude>=": constraints.lat_min,
+                        "latitude<=": constraints.lat_max
+                    }
+                    e2.variables = [
+                        'latitude',
+                        'longitude',
+                        'pressure',
+                    ]      
                     try:
                         download_url = e.get_download_url()
                         df = e2.to_pandas().dropna()
@@ -144,12 +208,12 @@ def fill_lat_lonValue_to_Dataset(metaData, constraints):
                             ' not tabledap')
                 
                 server.datasets[dataset_count] = dataset
+            else:
+                print('DATASET NOT IN SERVER')
         else:
             'Server error. This should have been resolved. Check code'
-        
-        metaData.servers[server_count] = server
     
-    return metaData
+        return server.datasets[dataset_count]
 
 
 
