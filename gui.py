@@ -1,12 +1,18 @@
-from datetime import date, timedelta
+import warnings
+warnings.simplefilter('ignore')
+
 import ipywidgets as widgets
 from ipyleaflet import Map, DrawControl
+from IPython.display import clear_output
+
+from datetime import date, timedelta
 
 m = Map(zoom=2)
 
 dc = DrawControl(rectangle={'shapeOptions': {'color': '#0000FF'}})
 
-coords = None
+kw = {}
+coords = []
 
 
 def handle_draw(self, action, geo_json):
@@ -17,7 +23,6 @@ def handle_draw(self, action, geo_json):
 dc.on_draw(handle_draw)
 
 m.add_control(dc)
-
 
 start_date = date(1950, 1, 1)
 end_date = date(2020, 1, 1)
@@ -36,12 +41,17 @@ dates = widgets.SelectionRangeSlider(
 
 
 def on_button_clicked(_):
-    global dates, coords
-
+    global kw
+    
+    if coords:
+        kw = get_data(dates, coords)
+        msg = kw
+    else:
+        msg = 'Please, select some area'
+    
     with out:
-        print('hola')
-        output = get_data(dates, coords)
-        print(output)
+        clear_output()
+        print(msg)
 
 
 def get_data(dates, coords):
@@ -68,9 +78,10 @@ def get_data(dates, coords):
     return params
 
 
-button = widgets.Button(description='Get info')
-button.on_click(on_button_clicked)
+btn = widgets.Button(description='Get data')
 
 out = widgets.Output()
 
-widgets.VBox([button, out])
+btn.on_click(on_button_clicked)
+
+button = widgets.VBox([btn, out])
