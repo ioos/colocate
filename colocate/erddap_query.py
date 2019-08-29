@@ -16,27 +16,30 @@ def query(url, **kw):
     headers = {'User-agent': '{}-{}'.format((requests.__version__), "erddap-colocate")}
     print(headers)
 
+    # we need to rstrip to prevent a '//' in the URL for some reason:
+    url = url.rstrip("/")
+    e = ERDDAP(
+             server=url,
+             protocol='tabledap',
+             response='csv'
+             )
+             
     # submit the query:
     try:
-        print("In the try...")
-        #r = requests.get(url,  headers=headers)
-        #r.raise_for_status()
-        print("In the try 2...")
-        e = ERDDAP(
-                 server=url,
-                 protocol='tabledap',
-                 response='csv'
-           )
-        print(e.get_search_url(kw))
-        print("In the try 3...")
-        ds = e.to_pandas()
-        print("In the try 4...")
-        print(ds.head())
-        return ds
+        r = requests.get(e.get_search_url(**kw), headers=headers)
+        r.raise_for_status()
+        print(e.get_search_url(**kw))
 
-        #datasets = ds[['server','Dataset ID','tabledap']]
-        #datasets.dropna(subset=['tabledap'],inplace=True)
-        #all_datasets = pd.concat([all_datasets,datasets])
+        ds = pd.read_csv("{}".format(e.get_search_url(**kw)))
+        ds['server'] = url
+        ds.dropna(subset=['tabledap'],inplace=True)
+        print(ds.head())
+
+        return ds[['server','Dataset ID','tabledap','Institution','Summary']]
+
+        # this is for the data query part.... hold:
+        #ds = e.to_pandas()
+        #return ds
 
     except requests.exceptions.RequestException as e:
         print("Bad ERDDAP!!! {}".format(url))
@@ -51,16 +54,17 @@ def query(url, **kw):
         print("Bad ERDDAP!!! {}".format(url))
         print("Encountered: requests.exceptions.ConnectTimeout")
 
-    except requests.exceptions.HTTPError as e:
-        print("Bad ERDDAP!!! {}".format(url))
-    except requests.exceptions.SSLError as e:
-        print("Bad ERDDAP!!! {}".format(url))
-    except OpenSSL.SSL.Error as e:
-        print("Bad ERDDAP!!! {}".format(url))
-    except ssl.SSLError as e:
-        print("Bad ERDDAP!!! {}".format(url))
-    except urllib3.exceptions.MaxRetryError as e:
-        print("Bad ERDDAP!!! {}".format(url))
-
-
     return None
+
+    '''
+        except requests.exceptions.HTTPError as e:
+            print("Bad ERDDAP!!! {}".format(url))
+        except requests.exceptions.SSLError as e:
+            print("Bad ERDDAP!!! {}".format(url))
+        except OpenSSL.SSL.Error as e:
+            print("Bad ERDDAP!!! {}".format(url))
+        except ssl.SSLError as e:
+            print("Bad ERDDAP!!! {}".format(url))
+        except urllib3.exceptions.MaxRetryError as e:
+            print("Bad ERDDAP!!! {}".format(url))
+    '''

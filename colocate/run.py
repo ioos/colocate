@@ -41,7 +41,10 @@ def main():
     all_datasets=pd.DataFrame()
 
     print("\n\n********Run ERDDAP Advanced Serach via erddapy to find datasets***********")
-    for server in servers[0:1]:
+    print(len(servers))
+
+    #for server in servers[0:1]:
+    for server in servers:
         print("url: {}".format(server['url']))
 
         ds = query(server['url'], **kw)
@@ -51,5 +54,5 @@ def main():
         all_datasets = pd.concat([all_datasets,ds])
 
 
-        print(all_datasets)
+        print(all_datasets.head())
     return all_datasets
