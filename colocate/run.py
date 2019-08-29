@@ -13,7 +13,8 @@ def ui_query(kw):
     print("\n\n********Run ERDDAP Advanced Serach via erddapy to find datasets***********")
     print(len(servers))
 
-    for server in servers[:-3]:
+    #for server in servers[:-3]:
+    for server in [servers[29]]:
         print("url: {}".format(server['url']))
 
         ds = query(server['url'], **kw)
@@ -37,8 +38,9 @@ def get_erddaps():
         return None
 
     print("Can I haz ERDDAPs???")
-    for server in servers:
-        print("name: {}\nurl: {}\npublic: {}".format(server['name'], server['url'], server['public']))
+    for i, server in enumerate(servers):
+    #for server in servers:
+        print("i: {}\nname: {}\nurl: {}\npublic: {}".format(i,server['name'], server['url'], server['public']))
 
     return servers
 
