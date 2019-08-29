@@ -100,6 +100,7 @@ def fill_lat_lonValue_to_AllDataset(metaData,kw, constraints):
         server = metaData.servers[server_count]
         df = pd.DataFrame()
         elist = []
+        noerr = False
         try:
             #r.raise_for_status()
             e = ERDDAP(
@@ -113,6 +114,7 @@ def fill_lat_lonValue_to_AllDataset(metaData,kw, constraints):
             noerr = False
 
         if noerr:
+            datasets_To_remove = []
             for dataset_count in range(len(server.datasets)):
                 dataset = server.datasets[dataset_count]
                 if dataset.datasetType == 'tabledap':
@@ -133,18 +135,22 @@ def fill_lat_lonValue_to_AllDataset(metaData,kw, constraints):
                         'pressure',
                     ] 
                     try:
-                        download_url = e.get_download_url()
+                        download_url = e2.get_download_url()
                         df = e2.to_pandas().dropna()
                         dataset.lon = df["longitude (degrees_east)"]
                         dataset.lat = df["latitude (degrees_north)"]
                     except:
-                        print('could not get lon lat for dataset '+ \
-                            dataset.dataset_ID + ' in server ' + server.url)
+#                         print('could not get lon lat for dataset '+ \
+#                             dataset.dataset_ID + ' in server ' + server.url)
+                        datasets_To_remove.append(dataset)
                 else:
                     print('dataset '+ dataset.dataset_ID + ' in server ' + server.url + \
                             ' not tabledap')
                 
                 server.datasets[dataset_count] = dataset
+            for i in range(len(datasets_To_remove)):
+                #print(type(datasets_To_remove[i]))
+                server.removeDatasets(datasets_To_remove[i])
         else:
             'Server error. This should have been resolved. Check code'
         
@@ -195,16 +201,16 @@ def fill_lat_lonValue_to_Dataset(server, dataset, kw, constraints):
                         'pressure',
                     ]      
                     try:
-                        download_url = e.get_download_url()
+                        download_url = e2.get_download_url()
                         df = e2.to_pandas().dropna()
                         dataset.lon = df["longitude (degrees_east)"]
                         dataset.lat = df["latitude (degrees_north)"]
                     except:
-                        print('could not get lon lat for dataset ',+\
+                        print('could not get lon lat for dataset ' + \
                             dataset.dataset_ID + ' in server ' + server.url)
                 else:
-                    print('dataset ',+\
-                            dataset.dataset_ID + ' in server ' + server.url +\
+                    print('dataset '+ \
+                            dataset.dataset_ID + ' in server ' + server.url + \
                             ' not tabledap')
                 
                 server.datasets[dataset_count] = dataset

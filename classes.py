@@ -57,7 +57,7 @@ class serverClass:
     def __init__(self,serverURL):
         self.url = serverURL
         self.datasets = []
-        self.Err = 'True'
+        self.Err = True
         self.num_tableDAP = 0
         self.num_gridDAP = 0
         self.num_WMS = 0
@@ -70,6 +70,19 @@ class serverClass:
         self.num_tableDAP = table
         self.num_gridDAP = grid
         self.num_WMS = WMS
+        
+    def removeDatasets(self,dataset):
+        num_datasets = len(self.datasets)
+        flag = False
+        index = -99999
+        for i in range(num_datasets):
+            if self.datasets[i].dataset_ID == dataset.dataset_ID:
+                index = i
+                flag = True
+                break
+        self.datasets.pop(index)
+        
+                
 
 
 class MetaDataClass:
