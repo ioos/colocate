@@ -5,15 +5,16 @@ import ipywidgets as widgets
 from ipyleaflet import Map, DrawControl
 from IPython.display import clear_output
 
+from colocate import erddap_query, run
 from datetime import date, timedelta
 
 m = Map(zoom=2)
 
 dc = DrawControl(polyline={}, polygon={}, circlemarker={}, rectangle={'shapeOptions': {'color': '#0000FF'}})
 
-kw = {}
-coords = []
-
+kw = None
+coords = None
+df = None
 
 def handle_draw(self, action, geo_json):
     global coords
@@ -41,14 +42,15 @@ dates = widgets.SelectionRangeSlider(
 
 
 def on_button_clicked(_):
-    global kw
-    
+    global kw, df
+
     if coords:
         kw = get_data(dates, coords)
-        msg = kw
+        df = run.ui_query(kw)
+        msg = df
     else:
         msg = 'Please, select some area'
-    
+
     with out:
         clear_output()
         print(msg)

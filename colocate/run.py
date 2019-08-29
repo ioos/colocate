@@ -13,7 +13,7 @@ def ui_query(kw):
     print("\n\n********Run ERDDAP Advanced Serach via erddapy to find datasets***********")
     print(len(servers))
 
-    for server in servers[:-1]:
+    for server in servers[:-3]:
         print("url: {}".format(server['url']))
 
         ds = query(server['url'], **kw)
