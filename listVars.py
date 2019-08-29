@@ -23,6 +23,7 @@ def getVars(kw):
     file = urllib.request.urlopen(
         'https://raw.githubusercontent.com/IrishMarineInstitute/search-erddaps/master/erddaps.json')
     servers = json.loads(file.read())
+    print(type(servers[0]))
     file.getcode()
     #servers=servers[:3]
 
