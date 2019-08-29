@@ -127,12 +127,12 @@ def fill_lat_lonValue_to_AllDataset(metaData,kw, constraints):
                         "longitude>=": constraints.lon_min,
                         "longitude<=": constraints.lon_max,
                         "latitude>=": constraints.lat_min,
-                        "latitude<=": constraints.lat_max
+                        "latitude<=": constraints.lat_max,
+                        "distinct" : ()
                     }
                     e2.variables = [
                         'latitude',
                         'longitude',
-                        'pressure',
                     ] 
                     try:
                         download_url = e2.get_download_url()
@@ -197,8 +197,7 @@ def fill_lat_lonValue_to_Dataset(server, dataset, kw, constraints):
                     }
                     e2.variables = [
                         'latitude',
-                        'longitude',
-                        'pressure',
+                        'longitude'
                     ]      
                     try:
                         download_url = e2.get_download_url()
