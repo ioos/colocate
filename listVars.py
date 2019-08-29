@@ -11,6 +11,14 @@ import urllib
 import requests
 import pandas as pd
 
+
+
+import matplotlib.pyplot as plt
+import cartopy.crs as ccrs
+
+from pandas.plotting import register_matplotlib_converters
+register_matplotlib_converters()
+
 def getVars(kw):
     file = urllib.request.urlopen(
         'https://raw.githubusercontent.com/IrishMarineInstitute/search-erddaps/master/erddaps.json')
@@ -38,6 +46,8 @@ def getVars(kw):
         url = key['url']
         url = url.rstrip("/")
         #r = requests.get(url)
+        df = pd.DataFrame()
+        erdaplist = []
         try:
             #r.raise_for_status()
             e = ERDDAP(
@@ -45,56 +55,62 @@ def getVars(kw):
                 protocol='tabledap',
                 response='csv'
             )
-            print(e.get_search_url(**kw))
-            #noerr = True
-        except requests.exceptions.RequestException as err:
-            #print("Bad ERDDAP!!! Req Err{}".format(url))
+            erdaplist.append(e)
+            #print(e.get_search_url(**kw))
+            df = pd.read_csv(e.get_search_url(response='csv',**kw))
+            noerr = True
+        except:# requests.exceptions.RequestException as err:
             noerr = False
-        except requests.exceptions.HTTPError as errh:
-            #print("Bad ERDDAP!!! HTTP err {}".format(url))
-            noerr = False
-        except requests.exceptions.ConnectionError as errc:
-            #print("Bad ERDDAP!!! Con err {}".format(url))
-            noerr = False
-        except requests.exceptions.Timeout as errt:
-            #print("Bad ERDDAP!!! TimeOut err {}".format(url))
-            noerr = False
-#         except requests.exceptions.HTTPSConnectionPool as errF:
-#             noerr = False
-
-        if noerr:
-            #pass
-              datasets = pd.read_csv(e.get_search_url(response='csv', search_for='all')
-                                   )  # pd.read_csv('%s'%e.get_search_url(**kw))
-              datasets['server'] = url
-#             all_datasets = pd.concat([all_datasets, datasets], sort=True)
-        d.close()
-
-#     tabledap = all_datasets.loc[all_datasets['tabledap'].notnull(), 'Info']
-#     tabledap = all_datasets.loc[all_datasets.notnull()]#, 'Info']
-
-
-#     ii = 0
-#     var_list =[]
-#     a =0
-#     for csv_url in tabledap:
-#         a += 1
-#         print(a)
-#         meta = pd.read_csv(str(csv_url))
-#         #print(meta['Variable Name'].unique())
-#         #print()
-#         e = ERDDAP(
-#             server=all_datasets['server'].iloc[ii],
-#             protocol='tabledap')
-#         e.dataset_id = all_datasets['Dataset ID'].unique()
-#         e.protocol = "tabledap"
-#         ii += 1
-#         var_in_url = meta['Variable Name'].unique()
-#         # for variable in var_in_url:
-#         #     var_list.append(variable)
-#         print(var_in_url)
+            
         
-#     #varlist = array(var_in_url)
-#     varlist = var_in_url()
-#     return varlist
+            
+        d.close()
+        if df.empty != True:
+            dataset_ids = df.loc[~df['tabledap'].isnull(), 'Dataset ID'].tolist()
+            #print(df.head())
+            if dataset_ids:
+                
+                print(dataset_ids)
+                
+                cp_e = erdaplist[0]
+                
+                
+                cp_e.dataset_id = dataset_ids[1]
+                cp_e.protocol = "tabledap"
 
+                cp_e.variables = [
+                    "latitude",
+                    "longitude",
+                    "time",
+                ]
+
+                url = cp_e.get_download_url()
+
+                print('url for first Dataset',url)
+                
+                print(type(cp_e))
+
+                pltData = cp_e.to_pandas()
+                print(pltData.head())
+#                     index_col='time (UTC)',
+#                     parse_dates=True,
+#                     ).dropna()
+
+                #df.head()
+                # 
+                # 
+                #dx, dy = 2, 4
+                x = pltData["longitude (degrees_east)"]
+                y = pltData["latitude (degrees_north)"]
+                
+                print('xvals',x)
+                print('yvals',y)
+
+#                 fig, ax = plt.subplots(figsize=(5, 5),
+#                        subplot_kw={"projection": ccrs.PlateCarree()}
+#                        )
+#                 cs = ax.scatter(x, y, marker='o')#c=pltData[r"sci_water_temp (\u00baC)"],
+# #                 s=50, alpha=0.5, edgecolor='none')
+# #                 cbar = fig.colorbar(cs, orientation='vertical',fraction=0.1, shrink=0.9, extend='both')
+#                 ax.coastlines('10m')
+#                 ax.set_extent([x.min()-dx, x.max()+dx, y.min()-dy, y.max()+dy])
