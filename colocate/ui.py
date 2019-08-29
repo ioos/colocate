@@ -45,8 +45,9 @@ def on_button_clicked(_):
     global kw, df
 
     if coords:
-        kw = get_data(dates, coords)
+        kw = get_data()
         df = run.ui_query(kw)
+        df.dropna(subset=['tabledap'], inplace=True)
         msg = df
     else:
         msg = 'Please, select some area'
@@ -56,7 +57,7 @@ def on_button_clicked(_):
         print(msg)
 
 
-def get_data(dates, coords):
+def get_data():
     lats = []
     lons = []
 
@@ -75,6 +76,7 @@ def get_data(dates, coords):
         'max_lat': lats[2],
         'min_time': dates.value[0].strftime('%Y-%m-%dT%H:%M:%SZ'),
         'max_time': dates.value[1].strftime('%Y-%m-%dT%H:%M:%SZ'),
+        'standard_name': drpdwn.value
     }
 
     return params
@@ -87,3 +89,12 @@ out = widgets.Output()
 btn.on_click(on_button_clicked)
 
 button = widgets.VBox([btn, out])
+
+std_names=['sea_water_salinity','sea_water_temperature','mass_concentration_of_chlorophyll_in_sea_water','eastward_sea_water_velocity','northward_sea_water_velocity']
+
+
+drpdwn = widgets.Dropdown(
+    options=std_names,
+    description='CF Standard Names:',
+    disabled=False,
+)
