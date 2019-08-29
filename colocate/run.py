@@ -9,18 +9,20 @@ def main():
     """
     Entrypoint
     """
-    print("Test")
     servers = None
+
 
     # download master ERDDAP server list:
     try:
-        servers = json.loads(requests.get('https://raw.githubusercontent.com/IrishMarineInstitute/search-erddaps/master/erddaps.json').text)
+        #servers = json.loads(requests.get('https://raw.githubusercontent.com/IrishMarineInstitute/search-erddaps/master/erddaps.json').text)
+        servers = json.loads(requests.get('https://raw.githubusercontent.com/IrishMarineInstitute/awesome-erddap/master/erddaps.json').text)
         print(servers)
     except Exception as e:
         return None
 
-    print("Test")
-    print(servers)
+    for server in servers:
+        print("name: {}\nurl: {}\npublic: {}".format(server['name'], server['url'], server['public']))
+
     # define parameters (placeholder)
     time_min = '2010-07-10T00:00:00Z'
     time_max = '2016-08-10T00:00:00Z'
@@ -38,7 +40,8 @@ def main():
 
     all_datasets=pd.DataFrame()
 
-    for server in servers:
+    print("\n\n********Run ERDDAP Advanced Serach via erddapy to find datasets***********")
+    for server in servers[0:1]:
         print("url: {}".format(server['url']))
 
         ds = query(server['url'], **kw)
@@ -48,5 +51,5 @@ def main():
         all_datasets = pd.concat([all_datasets,ds])
 
 
-
+        print(all_datasets)
     return all_datasets
