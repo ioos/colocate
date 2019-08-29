@@ -12,9 +12,8 @@ def query(url, **kw):
     ds = pd.DataFrame()
 
     # some configuration:
-    #config = {'verbose': sys.stderr}
     headers = {'User-agent': '{}-{}'.format((requests.__version__), "erddap-colocate")}
-    print(headers)
+    #print(headers)
 
     # we need to rstrip to prevent a '//' in the URL for some reason:
     url = url.rstrip("/")
@@ -23,7 +22,7 @@ def query(url, **kw):
              protocol='tabledap',
              response='csv'
              )
-             
+
     # submit the query:
     try:
         r = requests.get(e.get_search_url(**kw), headers=headers)
@@ -33,7 +32,7 @@ def query(url, **kw):
         ds = pd.read_csv("{}".format(e.get_search_url(**kw)))
         ds['server'] = url
         ds.dropna(subset=['tabledap'],inplace=True)
-        print(ds.head())
+        #print(ds.head())
 
         return ds[['server','Dataset ID','tabledap','Institution','Summary']]
 

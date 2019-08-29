@@ -17,13 +17,8 @@ def ui_query(kw):
         print("url: {}".format(server['url']))
 
         ds = query(server['url'], **kw)
-
-        #datasets = ds[['server','Dataset ID','tabledap']]
-        #datasets.dropna(subset=['tabledap'],inplace=True)
         all_datasets = pd.concat([all_datasets,ds])
-
-
-        print(all_datasets.head())
+        #print(all_datasets.head())
     return all_datasets
 
 
