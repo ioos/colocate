@@ -72,45 +72,45 @@ def getVars(kw):
                 
                 print(dataset_ids)
                 
-                cp_e = erdaplist[0]
+#                 cp_e = erdaplist[0]
                 
                 
-                cp_e.dataset_id = dataset_ids[1]
-                cp_e.protocol = "tabledap"
+#                 cp_e.dataset_id = dataset_ids[1]
+#                 cp_e.protocol = "tabledap"
 
-                cp_e.variables = [
-                    "latitude",
-                    "longitude",
-                    "time",
-                ]
+#                 cp_e.variables = [
+#                     "latitude",
+#                     "longitude",
+#                     "time",
+#                 ]
 
-                url = cp_e.get_download_url()
+#                 url = cp_e.get_download_url()
 
-                print('url for first Dataset',url)
+#                 print('url for first Dataset',url)
                 
-                print(type(cp_e))
+#                 print(type(cp_e))
 
-                pltData = cp_e.to_pandas()
-                print(pltData.head())
-#                     index_col='time (UTC)',
-#                     parse_dates=True,
-#                     ).dropna()
+#                 pltData = cp_e.to_pandas()
+#                 print(pltData.head())
+# #                     index_col='time (UTC)',
+# #                     parse_dates=True,
+# #                     ).dropna()
 
-                #df.head()
-                # 
-                # 
-                #dx, dy = 2, 4
-                x = pltData["longitude (degrees_east)"]
-                y = pltData["latitude (degrees_north)"]
+#                 #df.head()
+#                 # 
+#                 # 
+#                 #dx, dy = 2, 4
+#                 x = pltData["longitude (degrees_east)"]
+#                 y = pltData["latitude (degrees_north)"]
                 
-                print('xvals',x)
-                print('yvals',y)
+#                 print('xvals',x)
+#                 print('yvals',y)
 
-#                 fig, ax = plt.subplots(figsize=(5, 5),
-#                        subplot_kw={"projection": ccrs.PlateCarree()}
-#                        )
-#                 cs = ax.scatter(x, y, marker='o')#c=pltData[r"sci_water_temp (\u00baC)"],
-# #                 s=50, alpha=0.5, edgecolor='none')
-# #                 cbar = fig.colorbar(cs, orientation='vertical',fraction=0.1, shrink=0.9, extend='both')
-#                 ax.coastlines('10m')
-#                 ax.set_extent([x.min()-dx, x.max()+dx, y.min()-dy, y.max()+dy])
+# #                 fig, ax = plt.subplots(figsize=(5, 5),
+# #                        subplot_kw={"projection": ccrs.PlateCarree()}
+# #                        )
+# #                 cs = ax.scatter(x, y, marker='o')#c=pltData[r"sci_water_temp (\u00baC)"],
+# # #                 s=50, alpha=0.5, edgecolor='none')
+# # #                 cbar = fig.colorbar(cs, orientation='vertical',fraction=0.1, shrink=0.9, extend='both')
+# #                 ax.coastlines('10m')
+# #                 ax.set_extent([x.min()-dx, x.max()+dx, y.min()-dy, y.max()+dy])
