@@ -28,29 +28,39 @@ def query(url, **kw):
         # this is redundant to ERDDAPY API query below:
         #r = requests.get(e.get_search_url(**kw), headers=headers)
         #r.raise_for_status()
-
+        print("Testing ERDDAP {}".format(url))
         df = pd.read_csv("{}".format(e.get_search_url(**kw), headers=headers))
         print("ERDDAP {} returned results from URL: {}".format(url, e.get_search_url(**kw)))
         df['server'] = url
         df.dropna(subset=['tabledap'],inplace=True)
 
         return df[['server','Dataset ID','tabledap','Institution','Summary']]
+    except Exception as ex:
+        print("Exception encountered: {}".format(type(ex).__name__))
 
-    except urllib.error.HTTPError as ex:
-        #print("Bad ERDDAP!!! {}, exception encountered: {}".format(url, type(ex).__name__))
+            # can happen if the dataset does not have any features within the query window, just log it here:
+        if type(ex).__name__ in ["HTTPError"]:
+            print(ex)
+            #raise
         pass
-    except urllib3.exceptions.NewConnectionError as ex:
-        #print("Bad ERDDAP!!! {}, exception encountered: {}".format(url, type(ex).__name__))
-        pass
-    except requests.exceptions.ConnectionError as ex:
-        #print("Bad ERDDAP!!! {}, exception encountered: {}".format(url, type(ex).__name__))
-        pass
-    except requests.exceptions.ConnectTimeout as ex:
-        #print("Bad ERDDAP!!! {}, exception encountered: {}".format(url, type(ex).__name__))
-        pass
-    except requests.exceptions.RequestException as ex:
-        #print("Bad ERDDAP!!! {}, exception encountered: {}".format(url, type(ex).__name__))
-        pass
+#     except urllib.error.HTTPError as ex:
+#         #print("Bad ERDDAP!!! {}, exception encountered: {}".format(url, type(ex).__name__))
+#         pass
+#     except urllib3.exceptions.NewConnectionError as ex:
+#         #print("Bad ERDDAP!!! {}, exception encountered: {}".format(url, type(ex).__name__))
+#         pass
+#     except requests.exceptions.ConnectionError as ex:
+#         #print("Bad ERDDAP!!! {}, exception encountered: {}".format(url, type(ex).__name__))
+#         pass
+#     except requests.exceptions.ConnectTimeout as ex:
+#         #print("Bad ERDDAP!!! {}, exception encountered: {}".format(url, type(ex).__name__))
+#         pass
+#     except requests.exceptions.RequestException as ex:
+#         #print("Bad ERDDAP!!! {}, exception encountered: {}".format(url, type(ex).__name__))
+#         pass
+#     except requests.exceptions.URLError as ex:
+#         #print("Bad ERDDAP!!! {}, exception encountered: {}".format(url, type(ex).__name__))
+#         pass
     return None
 
 
