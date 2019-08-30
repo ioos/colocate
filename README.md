@@ -7,14 +7,12 @@ Project-Co_locators
 
 ### Collaborators on this project
 Mathew Biddle <br />
-Hannah Blondin <br />
 Sophie Chu <br />
 Yeray Santana Falcon <br />
 Molly James <br />
 Pedro Magaña <br />
 Jazlyn Natalie <br />
 Laura Gomez Navarro  <br />
-Will Oestreich <br />
 Shikhar Rai  <br />
 Micah Wengren <br />
 

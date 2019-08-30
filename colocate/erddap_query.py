@@ -79,19 +79,22 @@ def get_coordinates(df, **kw):
      dataset_url = '%s/tabledap/%s.csvp?latitude,longitude,time&longitude>=-72.0&longitude<=-69&latitude>=38&latitude<=41&time>=1278720000.0&time<=1470787200.0&distinct()' % (all_datasets['server'].iloc[int(i)],all_datasets['Dataset ID'].iloc[int(i)])
     '''
     df_coords = pd.DataFrame()
-    
-    while df_coords.shape[0] == 0:
+    repeat = 0
+    while df_coords.shape[0] == 0 and repeat < 3:
+        repeat += 1
         # pick a couple random datasets
-        count = 20
+        count = 10
         if df.shape[0] > count:
             print("Found %i datasets. Reducing return to %i." % (df.shape[0],count))
-            df = df.iloc[random.sample(range(0,df.shape[0]),count+1)]
+            subset_datasets = df.iloc[random.sample(range(0,df.shape[0]),count+1)]
+        else:
+            subset_datasets = df
 
 
-        all_datasets = df
-        for i in range(all_datasets.shape[0]):
-            server_url = all_datasets['server'].iloc[int(i)]
-            dataset_id = all_datasets['Dataset ID'].iloc[int(i)]
+        #all_datasets = df
+        for i in range(subset_datasets.shape[0]):
+            server_url = subset_datasets['server'].iloc[int(i)]
+            dataset_id = subset_datasets['Dataset ID'].iloc[int(i)]
 
             # skip some difficult datasets for now:
             if "ROMS" in dataset_id or "DOP" in dataset_id: # skip ROMS model output
@@ -142,7 +145,7 @@ def get_coordinates(df, **kw):
                 url = e.get_download_url(
                         #constraints=kw,
                         response="csvp",
-                        dataset_id=all_datasets['Dataset ID'].iloc[int(i)],
+                        dataset_id=subset_datasets['Dataset ID'].iloc[int(i)],
                         variables=["latitude","longitude"]
                         )
                 print("Download URL: {}".format(url))
