@@ -1,10 +1,29 @@
-Project-Co_locators
+Project Co-Locators
 =======================
 
 
 ### Run ERDDAP colocate in Binder!
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/oceanhackweek/ohw19-project-co_locators/master?filepath=colocate.ipynb)
+
+### Installation:
+```
+cd ohw19-project-co_locators
+conda env create -f environment.yml
+python setup.py install
+
+erddap-co-locate
+```
+
+## Jupyter notebook:
+```
+jupyter notebook &
+```
+
+## Run with voila:
+```
+voila colocate.ipynb --enable_nbextensions=True --VoilaConfiguration.file_whitelist="['.*']"
+```
 
 ### Collaborators on this project
 Mathew Biddle <br />
@@ -16,6 +35,11 @@ Jazlyn Natalie <br />
 Laura Gomez Navarro  <br />
 Shikhar Rai  <br />
 Micah Wengren <br />
+
+## Team Co-Locators:
+![alt text](img/fake_logo.gif)
+
+
 
 ### The problem
 Co-locate oceanographic data by establishing constraints.
