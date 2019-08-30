@@ -1,6 +1,10 @@
 Project-Co_locators
 =======================
 
+
+###Run ERDDAP colocate in Binder!
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/oceanhackweek/ohw19-project-co_locators/master?filepath=colocate.ipynb)
+
 ### Collaborators on this project
 Mathew Biddle <br />
 Hannah Blondin <br />
@@ -40,16 +44,15 @@ A user is interested in all the available oceanographic data in a region where a
   - [Here is the list of all ERDDAP's they use.](https://github.com/IrishMarineInstitute/search-erddaps/blob/master/erddaps.json)
 - OHW18 built a [search interface for one ERDDAP server](https://github.com/oceanhackweek/ohw18_erddap-explorer)
 - yodapy: https://github.com/cormorack/yodapy
- 
+
 
 ### Proposed methods/tools
 - Jupyter
 - Python
   - [erddapy](https://github.com/ioos/erddapy)
-  - [Pandas](https://pandas.pydata.org/pandas-docs/stable/getting_started/overview.html)? 
+  - [Pandas](https://pandas.pydata.org/pandas-docs/stable/getting_started/overview.html)?
 - ?
 
 ### Background reading
 
 Optional: links to manuscripts or technical documents for more in-depth analysis.
-

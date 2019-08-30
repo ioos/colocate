@@ -42,6 +42,9 @@ def get_erddaps():
 
     return servers
 
+# may not be necessary
+def api_query():
+    return None
 
 def main():
     """
@@ -49,7 +52,7 @@ def main():
     """
     servers = get_erddaps()
 
-
+    
     # define parameters (placeholder)
     #time_min = '2019-01-01T00:00:00Z'
     time_min = '2019-07-01T00:00:00Z'
