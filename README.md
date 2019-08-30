@@ -2,7 +2,8 @@ Project-Co_locators
 =======================
 
 
-###Run ERDDAP colocate in Binder!
+### Run ERDDAP colocate in Binder!
+
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/oceanhackweek/ohw19-project-co_locators/master?filepath=colocate.ipynb)
 
 ### Collaborators on this project

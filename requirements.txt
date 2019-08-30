@@ -8,6 +8,7 @@ datashader
 geoviews
 holoviews
 panel
+voila
 compliance-checker
 pandas
 requests
