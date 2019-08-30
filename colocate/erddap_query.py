@@ -78,86 +78,89 @@ def get_coordinates(df, **kw):
 
      dataset_url = '%s/tabledap/%s.csvp?latitude,longitude,time&longitude>=-72.0&longitude<=-69&latitude>=38&latitude<=41&time>=1278720000.0&time<=1470787200.0&distinct()' % (all_datasets['server'].iloc[int(i)],all_datasets['Dataset ID'].iloc[int(i)])
     '''
-
-    # pick a couple random datasets
-    if df.shape[0] > 9:
-        print("Found %i datasets. Reducing return to 10." % df.shape[0])
-        df = df.iloc[random.sample(range(0,df.shape[0]),10)]
     df_coords = pd.DataFrame()
-
-    all_datasets = df
-    for i in range(all_datasets.shape[0]):
-        server_url = all_datasets['server'].iloc[int(i)]
-        dataset_id = all_datasets['Dataset ID'].iloc[int(i)]
-
-        # skip some difficult datasets for now:
-        if "ROMS" in dataset_id or "DOP" in dataset_id: # skip ROMS model output
-            #print("Skipping %s" % server_url + dataset_id)
-            continue
-
-        e = ERDDAP(
-                server=server_url,
-                protocol='tabledap',
-                response='csv'
-                )
-        try:
-            #e.variables=["latitude","longitude"]#,"time"]
-            #e.dataset_id = all_datasets['Dataset ID'].iloc[int(i)]
-            #e.constraints = {
-            #       "time>=": kw['min_time'],
-            #       "time<=": kw['max_time'],
-            #       "longitude>=": kw['min_lon'],
-            #       "longitude<=": kw['max_lon'],
-            #       "latitude>=": kw['min_lat'],
-            #       "latitude<=": kw['max_lat'],
-            #       "distinct" : ()
-            #}
+    
+    while df_coords.shape[0] == 0:
+        # pick a couple random datasets
+        count = 20
+        if df.shape[0] > count:
+            print("Found %i datasets. Reducing return to %i." % (df.shape[0],count))
+            df = df.iloc[random.sample(range(0,df.shape[0]),count+1)]
 
 
-            # this is redundant to ERDDAPY API query below:
-            #r = requests.get(e.get_download_url())
-            #r.raise_for_status()
+        all_datasets = df
+        for i in range(all_datasets.shape[0]):
+            server_url = all_datasets['server'].iloc[int(i)]
+            dataset_id = all_datasets['Dataset ID'].iloc[int(i)]
 
+            # skip some difficult datasets for now:
+            if "ROMS" in dataset_id or "DOP" in dataset_id: # skip ROMS model output
+                #print("Skipping %s" % server_url + dataset_id)
+                continue
 
-            #df = e.to_pandas()
-
-            # Generate a download URL via e.get_download_url and pass to Pandas DataFrame via read_csv
-            #   we need to use e.constraints here rather than in e.get_download_url to allow appending '>=' '<=' to the contstraints keys to match ERDDAP's API
-            #   (parameter signature differs from the search API used above)
-
-            # also add a 'distinct = ()' param, generate a download url, and submit a csv dataset download request to ERDDAP
-            #kw["distinct"] = "()"
-            e.constraints = {
-                   "time>=": kw['min_time'],
-                   "time<=": kw['max_time'],
-                   "longitude>=": kw['min_lon'],
-                   "longitude<=": kw['max_lon'],
-                   "latitude>=": kw['min_lat'],
-                   "latitude<=": kw['max_lat'],
-                   "distinct" : ()
-            }
-            url = e.get_download_url(
-                    #constraints=kw,
-                    response="csvp",
-                    dataset_id=all_datasets['Dataset ID'].iloc[int(i)],
-                    variables=["latitude","longitude"]
+            e = ERDDAP(
+                    server=server_url,
+                    protocol='tabledap',
+                    response='csv'
                     )
-            print("Download URL: {}".format(url))
+            try:
+                #e.variables=["latitude","longitude"]#,"time"]
+                #e.dataset_id = all_datasets['Dataset ID'].iloc[int(i)]
+                #e.constraints = {
+                #       "time>=": kw['min_time'],
+                #       "time<=": kw['max_time'],
+                #       "longitude>=": kw['min_lon'],
+                #       "longitude<=": kw['max_lon'],
+                #       "latitude>=": kw['min_lat'],
+                #       "latitude<=": kw['max_lat'],
+                #       "distinct" : ()
+                #}
 
-            #coords = pd.read_csv(url, headers=headers)
-            coords = pd.read_csv(url)
-            coords['dataset_count'] = i
-            coords['dataset_download_url'] = url
-            coords['Dataset ID'] = dataset_id
 
-            df_coords = pd.concat([df_coords,coords])
-        except Exception as ex:
-            print("Exception encountered: {}".format(type(ex).__name__))
+                # this is redundant to ERDDAPY API query below:
+                #r = requests.get(e.get_download_url())
+                #r.raise_for_status()
 
-            # can happen if the dataset does not have any features within the query window, just log it here:
-            if type(ex).__name__ in ["HTTPError"]:
-                print(ex)
-            #raise
-            pass
+
+                #df = e.to_pandas()
+
+                # Generate a download URL via e.get_download_url and pass to Pandas DataFrame via read_csv
+                #   we need to use e.constraints here rather than in e.get_download_url to allow appending '>=' '<=' to the contstraints keys to match ERDDAP's API
+                #   (parameter signature differs from the search API used above)
+
+                # also add a 'distinct = ()' param, generate a download url, and submit a csv dataset download request to ERDDAP
+                #kw["distinct"] = "()"
+                e.constraints = {
+                       "time>=": kw['min_time'],
+                       "time<=": kw['max_time'],
+                       "longitude>=": kw['min_lon'],
+                       "longitude<=": kw['max_lon'],
+                       "latitude>=": kw['min_lat'],
+                       "latitude<=": kw['max_lat'],
+                       "distinct" : ()
+                }
+                url = e.get_download_url(
+                        #constraints=kw,
+                        response="csvp",
+                        dataset_id=all_datasets['Dataset ID'].iloc[int(i)],
+                        variables=["latitude","longitude"]
+                        )
+                print("Download URL: {}".format(url))
+
+                #coords = pd.read_csv(url, headers=headers)
+                coords = pd.read_csv(url)
+                coords['dataset_count'] = i
+                coords['dataset_download_url'] = url
+                coords['Dataset ID'] = dataset_id
+
+                df_coords = pd.concat([df_coords,coords])
+            except Exception as ex:
+                print("Exception encountered: {}".format(type(ex).__name__))
+
+                # can happen if the dataset does not have any features within the query window, just log it here:
+                if type(ex).__name__ in ["HTTPError"]:
+                    print(ex)
+                #raise
+                pass
 
     return df_coords
