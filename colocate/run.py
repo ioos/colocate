@@ -3,7 +3,7 @@ import json
 import requests
 import pandas as pd
 
-from .erddap_query import query
+from .erddap_query import query, get_coordinates
 
 def ui_query(kw):
     servers = get_erddaps()
@@ -11,15 +11,14 @@ def ui_query(kw):
     all_datasets=pd.DataFrame()
 
     print("\n\n********Run ERDDAP Advanced Serach via erddapy to find datasets***********")
-    print(len(servers))
+    print("Total ERDDAPs: {}".format(len(servers)))
 
     #for server in servers[:-3]:
     for server in servers[:-2]:
-        print("url: {}".format(server['url']))
+        #print("url: {}".format(server['url']))
 
         ds = query(server['url'], **kw)
         all_datasets = pd.concat([all_datasets,ds])
-        #print(all_datasets.head())
     return all_datasets
 
 
@@ -33,14 +32,13 @@ def get_erddaps():
     try:
         #servers = json.loads(requests.get('https://raw.githubusercontent.com/IrishMarineInstitute/search-erddaps/master/erddaps.json').text)
         servers = json.loads(requests.get('https://raw.githubusercontent.com/IrishMarineInstitute/awesome-erddap/master/erddaps.json').text)
-        #print(servers)
     except Exception as e:
         return None
 
-    print("Can I haz ERDDAPs???")
-    for i, server in enumerate(servers):
-    #for server in servers:
-        print("i: {}\nname: {}\nurl: {}\npublic: {}".format(i,server['name'], server['url'], server['public']))
+    # debug:
+    #print("I can haz ERDDAPs???")
+    #for i, server in enumerate(servers):
+    #    print("i: {}\nname: {}\nurl: {}\npublic: {}".format(i,server['name'], server['url'], server['public']))
 
     return servers
 
@@ -53,8 +51,9 @@ def main():
 
 
     # define parameters (placeholder)
-    time_min = '2010-07-10T00:00:00Z'
-    time_max = '2016-08-10T00:00:00Z'
+    #time_min = '2019-01-01T00:00:00Z'
+    time_min = '2019-07-01T00:00:00Z'
+    time_max = '2019-12-31T00:00:00Z'
     bbox = [-72.0, -69, 38, 41]
 
     kw = {
@@ -70,11 +69,11 @@ def main():
     all_datasets=pd.DataFrame()
 
     print("\n\n********Run ERDDAP Advanced Serach via erddapy to find datasets***********")
-    print(len(servers))
+    print("Total ERDDAPs: {}".format(len(servers)))
 
-    #for server in servers[0:1]:
-    for server in servers:
-        print("url: {}".format(server['url']))
+    #for server in servers:
+    for server in servers[:-2]:
+        #print("url: {}".format(server['url']))
 
         ds = query(server['url'], **kw)
 
@@ -82,6 +81,13 @@ def main():
         #datasets.dropna(subset=['tabledap'],inplace=True)
         all_datasets = pd.concat([all_datasets,ds])
 
+    print(all_datasets.head())
 
-        print(all_datasets.head())
-    return all_datasets
+    # for the get_coordinates query, we need to remove 'search_for' since it isn't valid:
+    kw.pop('search_for', None)
+    all_coords = get_coordinates(all_datasets, **kw)
+    print(all_coords.shape)
+    print(all_coords.head())
+
+
+    return all_datasets, all_coords

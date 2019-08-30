@@ -51,7 +51,7 @@ def on_button_clicked(_):
             msg = 'No data returned... select different filter criteria'
         else:
             df.dropna(subset=['tabledap'], inplace=True)
-            msg = df
+            msg = 'Found {} datasets'.format(df.shape[0])
     else:
         msg = 'Please, select some area'
 
