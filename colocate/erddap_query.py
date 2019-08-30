@@ -10,7 +10,8 @@ import urllib3
 import random
 
 # some configuration:
-headers = {'User-agent': '{}-{}'.format((requests.__version__), "erddap-colocate-ohw19")}
+headers = {'User-agent': '{}-{}'.format((requests.__version__), "erddap-colocate-ohw19"),
+        'From': 'noreply@oceanhackweek.github.io'}
 
 def query(url, **kw):
     ds = pd.DataFrame()
