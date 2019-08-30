@@ -6,6 +6,7 @@ import json
 import requests
 import pandas as pd
 import urllib3
+import random
 
 # some configuration:
 headers = {'User-agent': '{}-{}'.format((requests.__version__), "erddap-colocate-ohw19")}
@@ -82,6 +83,10 @@ def get_coordinates(ds, kw):
      'min_time': '2018-01-27T00:00:00Z',
      'max_time': '2019-12-31T00:00:00Z'}
     '''
+    # pick a couple random datasets
+    if ds.shape[0] > 9:
+        print("Found %i datasets. Reducing return to 10." % ds.shape[0])
+        ds = ds.iloc[random.sample(range(0,ds.shape[0]),10)]
     df_coords = pd.DataFrame()
     all_datasets = ds
     for i in range(all_datasets.shape[0]):

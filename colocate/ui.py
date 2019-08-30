@@ -47,8 +47,11 @@ def on_button_clicked(_):
     if coords:
         kw = get_data()
         df = run.ui_query(kw)
-        df.dropna(subset=['tabledap'], inplace=True)
-        msg = df
+        if df.shape[0] == 0:
+            msg = 'No data returned... select different filter criteria'
+        else:
+            df.dropna(subset=['tabledap'], inplace=True)
+            msg = df
     else:
         msg = 'Please, select some area'
 

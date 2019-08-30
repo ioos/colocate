@@ -14,7 +14,7 @@ def ui_query(kw):
     print(len(servers))
 
     #for server in servers[:-3]:
-    for server in [servers[29]]:
+    for server in servers[:-2]:
         print("url: {}".format(server['url']))
 
         ds = query(server['url'], **kw)
