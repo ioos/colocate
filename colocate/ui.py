@@ -68,8 +68,8 @@ def get_data():
         lon_180 = ((point[0] - 180) % 360) - 180
         lons.append(lon_180)
 
-        lat_180 = ((point[1] - 180) % 360) - 180
-        lats.append(lat_180)
+        lat_90 = ((point[1] - 90) % 180) - 90
+        lats.append(lat_90)
 
     params = {
         'search_for': 'all',
@@ -85,7 +85,7 @@ def get_data():
     return params
 
 
-btn = widgets.Button(description='Get data')
+btn = widgets.Button(description='Search servers')
 
 out = widgets.Output()
 
