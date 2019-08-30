@@ -18,7 +18,8 @@ def plot(df_coords):
                                        'latitude (degrees_north)'],
                            ['Dataset ID','dataset_count'])
     tiles = gv.tile_sources.EsriOceanBase
-    figure = tiles * points.opts(size=5, color='dataset_count', cmap='viridis', tools=['hover'], width=600, height=600, global_extent=True)
+    figure = tiles * points.opts(size=5, color='dataset_count', cmap='viridis', 
+                                 tools=['hover'], width=600, height=600, global_extent=True)
 #     shpfilename = shpreader.natural_earth(resolution='10m',
 #                                         category='physical',
 #                                         name='coastline')
