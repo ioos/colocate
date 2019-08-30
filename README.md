@@ -30,7 +30,7 @@ Mathew Biddle <br />
 Sophie Chu <br />
 Yeray Santana Falcon <br />
 Molly James <br />
-Pedro Magaña <br />
+Pedro Magaña, Widget Wizard <br />
 Jazlyn Natalie <br />
 Laura Gomez Navarro  <br />
 Shikhar Rai  <br />
@@ -74,7 +74,9 @@ A user is interested in all the available oceanographic data in a region where a
 - Python
   - [erddapy](https://github.com/ioos/erddapy)
   - [Pandas](https://pandas.pydata.org/pandas-docs/stable/getting_started/overview.html)?
-- ?
+- hvplot
+  - interactive plotting for output
+  - map and overlaid points
 
 ### Background reading
 
