@@ -5,7 +5,7 @@ import ipywidgets as widgets
 from ipyleaflet import Map, DrawControl
 from IPython.display import clear_output
 
-from colocate import erddap_query, run
+from colocate import erddap_query, run, plot
 from datetime import date, timedelta
 
 m = Map(zoom=2)
@@ -52,6 +52,7 @@ def on_button_clicked(_):
         else:
             df.dropna(subset=['tabledap'], inplace=True)
             msg = 'Found {} datasets'.format(df.shape[0])
+            
     else:
         msg = 'Please, select some area'
 
@@ -59,6 +60,11 @@ def on_button_clicked(_):
         clear_output()
         print(msg)
 
+        
+def on_graph_button(_):
+    all_coords = erddap_query.get_coordinates(df, **kw)
+    plot.plot(all_coords)
+    
 
 def get_data():
     lats = []
@@ -101,3 +107,7 @@ drpdwn = widgets.Dropdown(
     description='CF Standard Names:',
     disabled=False,
 )
+
+graph = widgets.Button(description='Make plot')
+
+graph.on_click(on_graph_button)
