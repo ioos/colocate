@@ -8,6 +8,11 @@ dependencies:
   - jupyterlab
   - ipyleaflet
   - ipywidgets
+  - hvplot
+  - cmocean
+  - datashader
+  - geoviews
+  - holoviews
   - compliance-checker
   - pandas
   - requests
