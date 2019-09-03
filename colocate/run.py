@@ -10,11 +10,11 @@ def ui_query(kw):
 
     all_datasets=pd.DataFrame()
 
-    print("\n\n********Run ERDDAP Advanced Serach via erddapy to find datasets***********")
+    print("\n\n********Run ERDDAP Advanced Search via erddapy to find datasets***********")
     print("Total ERDDAPs: {}".format(len(servers)))
 
     #for server in servers[:-3]:
-    for server in servers[:-2]:
+    for server in servers[1:-2]:
         #print("url: {}".format(server['url']))
 
         ds = query(server['url'], **kw)
@@ -52,7 +52,7 @@ def main():
     """
     servers = get_erddaps()
 
-    
+
     # define parameters (placeholder)
     #time_min = '2019-01-01T00:00:00Z'
     time_min = '2019-07-01T00:00:00Z'
@@ -71,11 +71,11 @@ def main():
 
     all_datasets=pd.DataFrame()
 
-    print("\n\n********Run ERDDAP Advanced Serach via erddapy to find datasets***********")
+    print("\n\n********Run ERDDAP Advanced Search via erddapy to find datasets***********")
     print("Total ERDDAPs: {}".format(len(servers)))
 
     #for server in servers:
-    for server in servers[:-2]:
+    for server in servers[1:-2]:
         #print("url: {}".format(server['url']))
 
         ds = query(server['url'], **kw)
