@@ -52,7 +52,7 @@ def on_button_clicked(_):
         else:
             df.dropna(subset=['tabledap'], inplace=True)
             msg = 'Found {} datasets'.format(df.shape[0])
-            
+
     else:
         msg = 'Please, select some area'
 
@@ -60,11 +60,11 @@ def on_button_clicked(_):
         clear_output()
         print(msg)
 
-        
+
 def on_graph_button(_):
     all_coords = erddap_query.get_coordinates(df, **kw)
     plot.plot(all_coords)
-    
+
 
 def get_data():
     lats = []
@@ -78,7 +78,6 @@ def get_data():
         lats.append(lat_90)
 
     params = {
-        'search_for': 'all',
         'min_lon': lons[0],
         'max_lon': lons[2],
         'min_lat': lats[0],
@@ -99,7 +98,7 @@ btn.on_click(on_button_clicked)
 
 button = widgets.VBox([btn, out])
 
-std_names=['sea_water_salinity','sea_water_temperature','mass_concentration_of_chlorophyll_in_sea_water','eastward_sea_water_velocity','northward_sea_water_velocity']
+std_names=['sea_water_practical_salinity','sea_water_temperature','sea_surface_wave_significant_height','mass_concentration_of_chlorophyll_in_sea_water','eastward_sea_water_velocity','northward_sea_water_velocity']
 
 
 drpdwn = widgets.Dropdown(
