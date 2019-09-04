@@ -2,35 +2,37 @@ Project Co-Locators
 =======================
 
 
-### Run ERDDAP colocate in Binder!
+## Run:
+Run ERDDAP colocate in Binder: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/oceanhackweek/ohw19-project-co_locators/master?filepath=notebooks/colocate.ipynb)
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/oceanhackweek/ohw19-project-co_locators/master?filepath=colocate.ipynb)
-
-### Installation:
+## Installation:
 ```
 cd ohw19-project-co_locators
 conda env create -f environment.yml
 python setup.py install
+```
 
+### Run via command line:
+```
 erddap-co-locate
 ```
 
-## Jupyter notebook:
+### Run in Jupyter notebook:
 ```
 jupyter notebook &
 ```
 
-## Run with voila:
+### Run with voila:
 ```
 voila colocate.ipynb --enable_nbextensions=True --VoilaConfiguration.file_whitelist="['.*']"
 ```
 
-### Collaborators on this project
+## Collaborators on this project
 Mathew Biddle <br />
 Sophie Chu <br />
 Yeray Santana Falcon <br />
 Molly James <br />
-Pedro Magaña, Widget Wizard <br />
+Pedro Magaña <br />
 Jazlyn Natalie <br />
 Laura Gomez Navarro  <br />
 Shikhar Rai  <br />
@@ -41,7 +43,7 @@ Micah Wengren <br />
 
 
 
-### The problem
+## The problem
 Co-locate oceanographic data by establishing constraints.
 
 ### Application example
@@ -74,9 +76,7 @@ A user is interested in all the available oceanographic data in a region where a
 - Python
   - [erddapy](https://github.com/ioos/erddapy)
   - [Pandas](https://pandas.pydata.org/pandas-docs/stable/getting_started/overview.html)?
-- hvplot
-  - interactive plotting for output
-  - map and overlaid points
+- ?
 
 ### Background reading
 
