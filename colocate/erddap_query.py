@@ -15,7 +15,7 @@ headers = {'User-agent': '{}-{}'.format((requests.__version__), "erddap-colocate
 #headers = {'From': 'noreply@oceanhackweek.github.io'}
 
 def query(url, **kw):
-    ds = pd.DataFrame()
+    df = pd.DataFrame()
 
     # we need to rstrip to prevent a '//' in the URL for some reason:
     url = url.rstrip("/")
@@ -69,7 +69,7 @@ def get_coordinates(df, **kw):
     '''
     df = pd.DataFrame(columns=['server','Dataset ID',...])
 
-    kw = {'search_for': 'all',
+    kw = {
      'min_lon': -123.628173,
      'max_lon': -122.02382599999999,
      'min_lat': 47.25972200000001,
