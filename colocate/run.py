@@ -14,9 +14,9 @@ def ui_query(kw):
     print("Total ERDDAPs: {}".format(len(servers)))
 
     #for server in servers[:-3]:
-    for server in servers[1:-2]:
+    #for server in servers[1:-2]:
+    for server in ( servers[1:32] + servers[34:] ):
         #print("url: {}".format(server['url']))
-
         ds = query(server['url'], **kw)
         all_datasets = pd.concat([all_datasets,ds])
     return all_datasets
