@@ -106,7 +106,7 @@ def get_coordinates(df, **kw):
     for i in index_random:
         server_url = df['server'].iloc[int(i)]
         dataset_id = df['Dataset ID'].iloc[int(i)]
-        institution = df['Institution'].iloc[int(i)
+        institution = df['Institution'].iloc[int(i)]
 
         # skip some difficult datasets for now:
         if "ROMS" in dataset_id or "DOP" in dataset_id: # skip ROMS model output

@@ -42,12 +42,16 @@ def plot(df_coords):
     '''
 
     colors = cc.glasbey_bw
-    x_proj, y_proj = ds.utils.lnglat_to_meters(df_coords['longitude (degrees_east)'], df_coords['latitude (degrees_north)'])
-    df_coords = df_coords.join([pd.DataFrame({'easting': x_proj}), pd.DataFrame({'northing': y_proj})])
+    #x_proj, y_proj = ds.utils.lnglat_to_meters(df_coords['longitude (degrees_east)'], df_coords['latitude (degrees_north)'])
+    #df_coords = df_coords.join([pd.DataFrame({'easting': x_proj}), pd.DataFrame({'northing': y_proj})])
+    df_coords.loc[:, 'easting'], df_coords.loc[:, 'northing'] = ds.utils.lnglat_to_meters(df_coords['longitude (degrees_east)'], df_coords['latitude (degrees_north)'])
 
-    #tiles = gv.tile_sources.EsriOceanBase
+
+    tiles = gv.tile_sources.EsriOceanBase
+    #tiles = gv.tile_sources.EsriUSATopo
     #tiles = gv.tile_sources.CartoEco
-    tiles = gv.tile_sources.CartoDark
+    #tiles = gv.tile_sources.CartoDark
+
 
     '''
     figure = tiles * df_coords.hvplot.points(
@@ -60,7 +64,7 @@ def plot(df_coords):
     '''
 
     '''
-    '''
+
     figure = tiles * df_coords.hvplot.points(
        x='easting', y='northing', size=4, c='Dataset ID',
        #color=dim('easting'),
@@ -72,7 +76,56 @@ def plot(df_coords):
        datashade=False,
        title='ERDDAP Co-Locate Results'
     )
+    '''
 
+    '''
+
+    figure = tiles * df_coords.hvplot.points(
+       x='easting', y='northing', size=4, c='Dataset ID',
+       #color=dim('easting'),
+       #alpha=0.5, hover_alpha=1,
+       #s='Dataset ID', scale=10,
+       hover_cols=['Dataset ID', 'dataset_count'],
+       width=900, height=600, color_key=cc.b_glasbey_bw,
+       legend='bottom',
+       datashade=True,
+       dynspread=True,
+       rasterize=True,
+       title='ERDDAP Co-Locate Results'
+    )
+    '''
+
+    figure = df_coords.hvplot.points(
+        geo=True, tiles=tiles,
+
+        #x='easting', y='northing', c='Dataset ID',
+        #x='easting', y='northing', c='dataset_count',
+        #crs=ccrs.Mercator(),
+
+        #x='longitude (degrees_east)', y='latitude (degrees_north)', c='Dataset ID',
+        x='longitude (degrees_east)', y='latitude (degrees_north)', c='dataset_count',
+        crs=ccrs.PlateCarree(),
+        project=True,
+        rasterize=True,
+        #xlim=(df_coords['longitude (degrees_east)'].min(),df_coords['longitude (degrees_east)'].max()),
+        #ylim=(df_coords['latitude (degrees_north)'].min(),df_coords['latitude (degrees_north)'].max()),
+
+
+        #projection=ccrs.PlateCarree(),
+
+        #global_extent=False,
+        #size=5,
+        #alpha=0.5, hover_alpha=1,
+        #s='Dataset ID', scale=10,
+        hover_cols=['Dataset ID', 'dataset_count'],
+        width=900, height=600, color_key=cc.b_glasbey_bw,
+        #width=900, height=600, color=cc.b_glasbey_bw,
+        colorbar=True,
+        legend='bottom',
+        datashade=True,
+        #dynspread=True,
+        aggregator=ds.count_cat('dataset_count'),
+        title='ERDDAP Co-Locate Results'
+    )
 
     return figure
-    #return df_coords
