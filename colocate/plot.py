@@ -1,15 +1,18 @@
 import pandas as pd
-import hvplot.pandas
 import cmocean as cmo
-import datashader as ds
-import datashader.geo
-import cartopy.crs as ccrs
-import matplotlib.pyplot as plt
+
 import geoviews as gv
-import holoviews as hv
-from holoviews.element.tiles import OSM
-#df_coords = pd.read_csv(‘/Users/santanay/code/OHW19/ohw19-project-co_locators/coordinates.zip’, index_col=0)
+import hvplot.pandas
+from holoviews import dim
+
+import datashader as ds
+
+import colorcet as cc
+from colorcet.plotting import swatch
+
+import cartopy.crs as ccrs
 import cartopy.io.shapereader as shpreader
+
 
 
 def plot(df_coords):
@@ -38,47 +41,38 @@ def plot(df_coords):
     ) * gv.Shape.from_shapefile(shpfilename, crs=ccrs.PlateCarree())
     '''
 
-    '''
-    tiles = gv.tile_sources.EsriOceanBase
-    figure = df_coords.hvplot.scatter(
-       'longitude (degrees_east)','latitude (degrees_north)', s=2, c='Dataset ID',
-       projection=ccrs.PlateCarree(),
-       width=600, height=540, cmap=cmo.cm.tempo,
-       datashade=True
-    ) * tiles
-    '''
-
-    '''
-    tiles = gv.tile_sources.EsriOceanBase
-    figure = tiles * df_coords.hvplot.points(
-       x='longitude (degrees_east)', y='latitude (degrees_north)', s=2, c='Institution',
-       hover_cols=['Dataset ID', 'dataset_count'],
-       width=600, height=540, cmap=cmo.cm.tempo,
-       projection=ccrs.PlateCarree(),
-       datashade=True,
-       title='ERDDAP Co-Locate Results'
-    '''
-
-    x_proj, y_proj = ds.geo.lnglat_to_meters(df_coords.x, df_coords.y)
-
+    colors = cc.glasbey_bw
+    x_proj, y_proj = ds.utils.lnglat_to_meters(df_coords['longitude (degrees_east)'], df_coords['latitude (degrees_north)'])
     df_coords = df_coords.join([pd.DataFrame({'easting': x_proj}), pd.DataFrame({'northing': y_proj})])
 
+    #tiles = gv.tile_sources.EsriOceanBase
+    #tiles = gv.tile_sources.CartoEco
+    tiles = gv.tile_sources.CartoDark
+
+    '''
     figure = tiles * df_coords.hvplot.points(
-       x='easting', y='northing', s=2, c='Institution',
+       x='easting', y='northing', s=4, by='Institution',
        hover_cols=['Dataset ID', 'dataset_count'],
-       width=600, height=540, cmap=cmo.cm.tempo,
+       width=900, height=600, cmap=cc.b_glasbey_bw,
        datashade=True,
        title='ERDDAP Co-Locate Results'
     )
+    '''
 
-#     shpfilename = shpreader.natural_earth(resolution='10m',
-#                                         category='physical',
-#                                         name='coastline')
-#     figure = df_coords.hvplot.scatter(
-#        'longitude (degrees_east)','latitude (degrees_north)', s=5, c='Dataset ID',
-#        projection=ccrs.PlateCarree(),
-#        width=600, height=540, cmap=cmo.cm.tempo,
-#        datashade=True
-#     ) * gv.Shape.from_shapefile(shpfilename, crs=ccrs.PlateCarree())
+    '''
+    '''
+    figure = tiles * df_coords.hvplot.points(
+       x='easting', y='northing', size=4, c='Dataset ID',
+       #color=dim('easting'),
+       #alpha=0.5, hover_alpha=1,
+       #s='Dataset ID', scale=10,
+       hover_cols=['Dataset ID', 'dataset_count'],
+       width=900, height=600, cmap=cc.b_glasbey_bw,
+       legend='bottom',
+       datashade=False,
+       title='ERDDAP Co-Locate Results'
+    )
+
 
     return figure
+    #return df_coords
