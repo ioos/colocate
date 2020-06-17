@@ -25,3 +25,6 @@ dependencies:
   - palettable
   - iris
   - folium
+  - pip
+  - pip:
+    - git+https://github.com/oceanhackweek/ohw19-project-co_locators.git
