@@ -7,6 +7,7 @@ Run ERDDAP colocate in Binder: [![Binder](https://mybinder.org/badge_logo.svg)](
 
 ## Installation:
 ```
+git clone https://github.com/oceanhackweek/ohw19-project-co_locators.git
 cd ohw19-project-co_locators
 conda env create -f environment.yml
 python setup.py install
