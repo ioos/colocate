@@ -5,6 +5,8 @@ Project Co-Locators
 ## Run:
 Run ERDDAP colocate in Binder: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/oceanhackweek/ohw19-project-co_locators/master?filepath=notebooks/colocate.ipynb)
 
+Run colocate-dev.ipynb in Binder: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/oceanhackweek/ohw19-project-co_locators/master?filepath=notebooks%2Fcolocate-dev.ipynb)
+
 ## Installation:
 ```
 cd ohw19-project-co_locators

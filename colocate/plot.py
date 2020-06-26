@@ -97,6 +97,14 @@ def plot(df_coords):
 
     figure = df_coords.hvplot.points(
         geo=True, tiles=tiles,
+        datashade=True,
+        dynspread=True,
+        aggregator=ds.count_cat('dataset_count'),
+        width=900, height=600,
+        color_key=cc.b_glasbey_bw,
+        colorbar=True,
+        legend='top',
+        #legend=True,
 
         #x='easting', y='northing', c='Dataset ID',
         #x='easting', y='northing', c='dataset_count',
@@ -107,24 +115,18 @@ def plot(df_coords):
         crs=ccrs.PlateCarree(),
         project=True,
         rasterize=True,
-        #xlim=(df_coords['longitude (degrees_east)'].min(),df_coords['longitude (degrees_east)'].max()),
-        #ylim=(df_coords['latitude (degrees_north)'].min(),df_coords['latitude (degrees_north)'].max()),
-
+        xlim=(df_coords['longitude (degrees_east)'].min(),df_coords['longitude (degrees_east)'].max()),
+        ylim=(df_coords['latitude (degrees_north)'].min(),df_coords['latitude (degrees_north)'].max()),
 
         #projection=ccrs.PlateCarree(),
+        hover=True,
+        hover_cols=['Dataset ID', 'dataset_count'],
 
         #global_extent=False,
         #size=5,
+        #size='Dataset ID'
         #alpha=0.5, hover_alpha=1,
-        #s='Dataset ID', scale=10,
-        hover_cols=['Dataset ID', 'dataset_count'],
-        width=900, height=600, color_key=cc.b_glasbey_bw,
-        #width=900, height=600, color=cc.b_glasbey_bw,
-        colorbar=True,
-        legend='bottom',
-        datashade=True,
-        #dynspread=True,
-        aggregator=ds.count_cat('dataset_count'),
+        scale=10,
         title='ERDDAP Co-Locate Results'
     )
 
