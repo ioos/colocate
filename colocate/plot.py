@@ -29,7 +29,6 @@ def plot(df_coords):
                                  tools=['hover'], width=600, height=600, global_extent=True)
     '''
 
-    '''
     shpfilename = shpreader.natural_earth(resolution='10m',
                                         category='physical',
                                         name='coastline')
@@ -39,8 +38,10 @@ def plot(df_coords):
        width=600, height=540, cmap=cmo.cm.tempo,
        datashade=True
     ) * gv.Shape.from_shapefile(shpfilename, crs=ccrs.PlateCarree())
-    '''
 
+    return figure
+
+def plot_datashader(df_coords):
     colors = cc.glasbey_bw
     #x_proj, y_proj = ds.utils.lnglat_to_meters(df_coords['longitude (degrees_east)'], df_coords['latitude (degrees_north)'])
     #df_coords = df_coords.join([pd.DataFrame({'easting': x_proj}), pd.DataFrame({'northing': y_proj})])
