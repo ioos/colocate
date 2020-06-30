@@ -106,6 +106,7 @@ def get_coordinates(df, **kw):
     for i in index_random:
         server_url = df['server'].iloc[int(i)]
         dataset_id = df['Dataset ID'].iloc[int(i)]
+        institution = df['Institution'].iloc[int(i)]
 
         # skip some difficult datasets for now:
         if "ROMS" in dataset_id or "DOP" in dataset_id: # skip ROMS model output
@@ -159,6 +160,10 @@ def get_coordinates(df, **kw):
             coords['dataset_count'] = i
             coords['dataset_download_url'] = url
             coords['Dataset ID'] = dataset_id
+            coords['Institution'] = institution
+
+            #get_var_by_attr example (ToDo):
+            #e.get_var_by_attr(dataset_id, standard_name='northward_sea_water_velocity')
 
             print(coords.head())
             df_coords = pd.concat([df_coords,coords])
