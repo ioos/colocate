@@ -15,7 +15,8 @@ def ui_query(kw):
 
     #for server in servers[:-3]:
     #for server in servers[1:-2]:
-    for server in ( servers[1:32] + servers[34:] ):
+    #for server in ( servers[1:32] + servers[34:] ):
+    for server in servers[1:]:
         #print("url: {}".format(server['url']))
         ds = query(server['url'], **kw)
         all_datasets = pd.concat([all_datasets,ds])
