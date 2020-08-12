@@ -13,7 +13,6 @@ git clone https://github.com/oceanhackweek/ohw19-project-co_locators.git
 cd ohw19-project-co_locators
 conda env create -f environment.yml
 conda activate colocators-ohw19
-python setup.py install
 ```
 
 ### Run via command line:
