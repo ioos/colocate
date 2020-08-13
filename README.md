@@ -43,6 +43,13 @@ jupyter-lab &
 voila colocate.ipynb --enable_nbextensions=True --VoilaConfiguration.file_whitelist="['.*']"
 ```
 
+### Developer Mode:
+If you want to develop locally from your git cloned repository, `cd` to the repository root directory and run `pip install` as follows:
+```
+cd ohw19-project-co_locators
+pip install -e . --no-deps --force-reinstall
+```
+
 ## Collaborators on this project
 Mathew Biddle <br />
 Sophie Chu <br />
