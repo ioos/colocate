@@ -25,6 +25,19 @@ erddap-co-locate
 jupyter notebook &
 ```
 
+### Run in JupyterLab:
+
+This step may be necessary for ipyleaflet to run correctly in JupyterLab.  Run the following on the command line with the 'colocators-ohw19' conda environment:
+```
+jupyter labextension install @jupyter-widgets/jupyterlab-manager
+jupyter labextension install jupyter-leaflet
+```
+Then, start JupyterLab:
+```
+jupyter-lab &
+```
+
+
 ### Run with voila:
 ```
 voila colocate.ipynb --enable_nbextensions=True --VoilaConfiguration.file_whitelist="['.*']"
