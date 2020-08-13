@@ -145,7 +145,7 @@ def get_coordinates(df, **kw):
                    "longitude<=": kw['max_lon'],
                    "latitude>=": kw['min_lat'],
                    "latitude<=": kw['max_lat'],
-                   "distinct" : "()"
+                   "distinct" : ()
             }
             url = e.get_download_url(
                     #constraints=kw,
@@ -153,7 +153,7 @@ def get_coordinates(df, **kw):
                     dataset_id=df['Dataset ID'].iloc[int(i)],
                     variables=["latitude","longitude"]
                     )
-            print("Download URL: {}".format(urllib.parse.quote_plus(url)))
+            print("Download URL: '{}'".format(url))
 
             #coords = pd.read_csv(url, headers=headers)
             coords = pd.read_csv(url)
