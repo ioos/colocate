@@ -5,8 +5,6 @@ import sys
 import json
 import requests
 import pandas as pd
-import urllib
-import urllib3
 import random
 
 # some configuration:
@@ -43,53 +41,16 @@ def query(url, **kw):
             print(ex)
             #raise
         pass
-
-#     except urllib.error.HTTPError as ex:
-#         #print("Bad ERDDAP!!! {}, exception encountered: {}".format(url, type(ex).__name__))
-#         pass
-#     except urllib3.exceptions.NewConnectionError as ex:
-#         #print("Bad ERDDAP!!! {}, exception encountered: {}".format(url, type(ex).__name__))
-#         pass
-#     except requests.exceptions.ConnectionError as ex:
-#         #print("Bad ERDDAP!!! {}, exception encountered: {}".format(url, type(ex).__name__))
-#         pass
-#     except requests.exceptions.ConnectTimeout as ex:
-#         #print("Bad ERDDAP!!! {}, exception encountered: {}".format(url, type(ex).__name__))
-#         pass
-#     except requests.exceptions.RequestException as ex:
-#         #print("Bad ERDDAP!!! {}, exception encountered: {}".format(url, type(ex).__name__))
-#         pass
-#     except requests.exceptions.URLError as ex:
-#         #print("Bad ERDDAP!!! {}, exception encountered: {}".format(url, type(ex).__name__))
-#         pass
     return None
 
 
 def get_coordinates(df, **kw):
     '''
-    df = pd.DataFrame(columns=['server','Dataset ID',...])
+    Example ERDDAP TableDAP URL:
 
-    kw = {
-     'min_lon': -123.628173,
-     'max_lon': -122.02382599999999,
-     'min_lat': 47.25972200000001,
-     'max_lat': 48.32253399999999,
-     'min_time': '2018-01-27T00:00:00Z',
-     'max_time': '2019-12-31T00:00:00Z'}
-
-     dataset_url = '%s/tabledap/%s.csvp?latitude,longitude,time&longitude>=-72.0&longitude<=-69&latitude>=38&latitude<=41&time>=1278720000.0&time<=1470787200.0&distinct()' % (all_datasets['server'].iloc[int(i)],all_datasets['Dataset ID'].iloc[int(i)])
+    dataset_url = '%s/tabledap/%s.csvp?latitude,longitude,time&longitude>=-72.0&longitude<=-69&latitude>=38&latitude<=41&time>=1278720000.0&time<=1470787200.0&distinct()' % (all_datasets['server'].iloc[int(i)],all_datasets['Dataset ID'].iloc[int(i)])
     '''
     df_coords = pd.DataFrame()
-
-    # pick 10 random datasets from our search results:
-    #count = 10
-    #if df.shape[0] > count:
-    #    print("Found %i datasets. Reducing return to %i." % (df.shape[0],count))
-    #    subset_datasets = df.iloc[random.sample(range(0,df.shape[0]),count+1)]
-    #else:
-    #    subset_datasets = df
-    #    final_dataset_limit = df.shape[0]
-
 
     # alternate approach to above is iterate the original DataFrame passed (df), stopping either
     #   at final_dataset_limit (10 currently) or the max # of rows in df (conclusion of for loop)
@@ -153,7 +114,7 @@ def get_coordinates(df, **kw):
                     dataset_id=df['Dataset ID'].iloc[int(i)],
                     variables=["latitude","longitude"]
                     )
-            print("Download URL: '{}'".format(url))
+            print("Download URL: {}".format(url))
 
             #coords = pd.read_csv(url, headers=headers)
             coords = pd.read_csv(url)
@@ -172,8 +133,6 @@ def get_coordinates(df, **kw):
             #   we need to break out of for loop here however if we reach final_dataset_limit to not go over:
             datasets_found += 1
             print("new dataset acquired; datasets_found: {}".format(datasets_found))
-            # not needed:
-            #df.drop([i])
             if datasets_found == final_dataset_limit: break
 
         except Exception as ex:
