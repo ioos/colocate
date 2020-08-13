@@ -13,9 +13,7 @@ def ui_query(kw):
     print("\n\n********Run ERDDAP Advanced Search via erddapy to find datasets***********")
     print("Total ERDDAPs: {}".format(len(servers)))
 
-    #for server in servers[:-3]:
-    #for server in servers[1:-2]:
-    #for server in ( servers[1:32] + servers[34:] ):
+    # for the moment, we bypass the 'main' ERDDAP server (https://coastwatch.pfeg.noaa.gov/erddap - #1 in Awesome ERDDAP list):
     for server in servers[1:]:
         #print("url: {}".format(server['url']))
         ds = query(server['url'], **kw)
@@ -75,8 +73,8 @@ def main():
     print("\n\n********Run ERDDAP Advanced Search via erddapy to find datasets***********")
     print("Total ERDDAPs: {}".format(len(servers)))
 
-    #for server in servers:
-    for server in servers[1:-2]:
+    # for the moment, we bypass the 'main' ERDDAP server (https://coastwatch.pfeg.noaa.gov/erddap - #1 in Awesome ERDDAP list):
+    for server in servers[1:]:
         #print("url: {}".format(server['url']))
 
         ds = query(server['url'], **kw)

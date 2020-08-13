@@ -27,10 +27,11 @@ jupyter notebook &
 
 ### Run in JupyterLab:
 
-This step may be necessary for ipyleaflet to run correctly in JupyterLab.  Run the following on the command line with the 'colocators-ohw19' conda environment:
+This step may be necessary for ipyleaflet and HoloViz to run correctly in JupyterLab.  Run the following on the command line with the 'colocators-ohw19' conda environment active:
 ```
 jupyter labextension install @jupyter-widgets/jupyterlab-manager
 jupyter labextension install jupyter-leaflet
+jupyter labextension install @pyviz/jupyterlab_pyviz
 ```
 Then, start JupyterLab:
 ```
