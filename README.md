@@ -61,6 +61,9 @@ Jazlyn Natalie <br />
 Laura Gomez Navarro  <br />
 Shikhar Rai  <br />
 Micah Wengren <br />
+Jacqueline Tay <br />
+Mike Morley <br />
+Yuta Norden <br />
 
 ## Team Co-Locators:
 ![alt text](img/fake_logo.gif)
