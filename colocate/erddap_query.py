@@ -122,6 +122,16 @@ def get_coordinates(df, **kw):
             coords['dataset_download_url'] = url
             coords['Dataset ID'] = dataset_id
             coords['Institution'] = institution
+            
+            
+            metadata_url = e.get_info_url(
+                dataset_id=df['Dataset ID'].iloc[int(i)], 
+                response='csv'
+            )
+
+            metadata = pd.read_csv(metadata_url)
+
+            coords['cdm_data_type'] = "".join(metadata.loc[metadata["Attribute Name"] == "cdm_data_type", "Value"])
 
             #get_var_by_attr example (ToDo):
             #e.get_var_by_attr(dataset_id, standard_name='northward_sea_water_velocity')
