@@ -1,13 +1,20 @@
-Project Co-Locators
-=======================
+# Project Co-Locators
 
 
-## Run:
-Run ERDDAP colocate in Binder: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/oceanhackweek/ohw19-project-co_locators/master?filepath=notebooks%2Fcolocate.ipynb)
+## Preview/Run:
 
-Run colocate-dev.ipynb in Binder: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/oceanhackweek/ohw19-project-co_locators/master?filepath=notebooks%2Fcolocate-dev.ipynb)
+#### ERDDAP colocate.ipynb:
+[![binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/oceanhackweek/ohw19-project-co_locators/master?filepath=notebooks%2Fcolocate.ipynb)
+[![nbviewer](https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg)](https://nbviewer.jupyter.org/github/oceanhackweek/ohw19-project-co_locators/blob/master/notebooks/colocate.ipynb)
+
+#### ERDDAP colocate-dev.ipyb:
+[![binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/oceanhackweek/ohw19-project-co_locators/master?filepath=notebooks%2Fcolocate-dev.ipynb)
+[![nbviewer](https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg)](https://nbviewer.jupyter.org/github/oceanhackweek/ohw19-project-co_locators/blob/master/notebooks/colocate-dev.ipynb)
+
 
 ## Installation:
+
+### Install with conda:
 ```
 git clone https://github.com/oceanhackweek/ohw19-project-co_locators.git
 cd ohw19-project-co_locators
@@ -38,37 +45,39 @@ Then, start JupyterLab:
 jupyter-lab &
 ```
 
-
 ### Run with voila:
 ```
 voila colocate.ipynb --enable_nbextensions=True --VoilaConfiguration.file_whitelist="['.*']"
 ```
 
-### Developer Mode:
-If you want to develop locally from your git cloned repository, `cd` to the repository root directory and run `pip install` as follows:
+## Local Development:
+If you want to develop locally, clone from GitHub, `cd` to the cloned repository root directory, and run `pip install` as follows:
 ```
+git clone https://github.com/oceanhackweek/ohw19-project-co_locators.git
 cd ohw19-project-co_locators
 pip install -e . --no-deps --force-reinstall
 ```
 
-## Collaborators on this project
-Mathew Biddle <br />
-Sophie Chu <br />
-Yeray Santana Falcon <br />
-Molly James <br />
-Pedro Magaña <br />
-Jazlyn Natalie <br />
-Laura Gomez Navarro  <br />
-Shikhar Rai  <br />
-Micah Wengren <br />
-Jacqueline Tay <br />
-Mike Morley <br />
-Yuta Norden <br />
 
-## Team Co-Locators:
-![alt text](img/fake_logo.gif)
+# OceanHackWeek 2019 'co-locators' Project
 
 
+## Collaborators:
+
+| Name | Year |
+|------------|----|
+|Mathew Biddle|2019|
+|Sophie Chu|2019|
+|Yeray Santana Falcon|2019|
+|Molly James|2019|
+|Pedro Magaña|2019|
+|Jazlyn Natalie|2019|
+|Laura Gomez Navarro|2019|
+|Shikhar Rai|2019|
+|Micah Wengren|2019|
+|Jacqueline Tay|2020|
+|Mike Morley|2020|
+|Yuta Norden|2020|
 
 ## The problem
 Co-locate oceanographic data by establishing constraints.
@@ -102,8 +111,7 @@ A user is interested in all the available oceanographic data in a region where a
 - Jupyter
 - Python
   - [erddapy](https://github.com/ioos/erddapy)
-  - [Pandas](https://pandas.pydata.org/pandas-docs/stable/getting_started/overview.html)?
-- ?
+  - [Pandas](https://pandas.pydata.org/pandas-docs/stable/getting_started/overview.html)
 
 ### Background reading
 
