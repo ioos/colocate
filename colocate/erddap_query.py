@@ -1,5 +1,5 @@
+import erddapy
 from erddapy import ERDDAP
-from erddapy import utilities
 
 import sys
 import json
@@ -8,7 +8,7 @@ import pandas as pd
 import random
 
 # some configuration:
-headers = {'User-agent': '{}-{}'.format((requests.__version__), "erddap-colocate-ohw19"),
+headers = {'User-agent': '{}-{}'.format((erddapy.__version__), "erddap-colocate-ohw19"),
         'From': 'noreply@oceanhackweek.github.io'}
 #headers = {'From': 'noreply@oceanhackweek.github.io'}
 

@@ -12,7 +12,7 @@ voila
 compliance-checker
 pandas
 requests
-erddapy
+erddapy>=0.8.0
 cartopy
 matplotlib
 numpy
