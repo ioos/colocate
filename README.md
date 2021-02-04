@@ -4,22 +4,22 @@
 ## Preview/Run:
 
 #### ERDDAP colocate.ipynb:
-[![binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/oceanhackweek/ohw19-project-co_locators/master?filepath=notebooks%2Fcolocate.ipynb)
-[![nbviewer](https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg)](https://nbviewer.jupyter.org/github/oceanhackweek/ohw19-project-co_locators/blob/master/notebooks/colocate.ipynb)
+[![binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ioos/colocate/master?filepath=notebooks%2Fcolocate.ipynb)
+[![nbviewer](https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg)](https://nbviewer.jupyter.org/github/ioos/colocate/blob/master/notebooks/colocate.ipynb)
 
 #### ERDDAP colocate-dev.ipyb:
-[![binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/oceanhackweek/ohw19-project-co_locators/master?filepath=notebooks%2Fcolocate-dev.ipynb)
-[![nbviewer](https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg)](https://nbviewer.jupyter.org/github/oceanhackweek/ohw19-project-co_locators/blob/master/notebooks/colocate-dev.ipynb)
+[![binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ioos/colocate/master?filepath=notebooks%2Fcolocate-dev.ipynb)
+[![nbviewer](https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg)](https://nbviewer.jupyter.org/github/ioos/colocate/blob/master/notebooks/colocate-dev.ipynb)
 
 
 ## Installation:
 
 ### Install with conda:
 ```
-git clone https://github.com/oceanhackweek/ohw19-project-co_locators.git
-cd ohw19-project-co_locators
+git clone https://github.com/ioos/colocate.git
+cd colocate
 conda env create -f environment.yml
-conda activate colocators-ohw19
+conda activate colocate
 ```
 
 ### Run via command line:
@@ -34,7 +34,7 @@ jupyter notebook &
 
 ### Run in JupyterLab:
 
-This step may be necessary for ipyleaflet and HoloViz to run correctly in JupyterLab.  Run the following on the command line with the 'colocators-ohw19' conda environment active:
+This step may be necessary for ipyleaflet and HoloViz to run correctly in JupyterLab.  Run the following on the command line with the 'colocate' conda environment active:
 ```
 jupyter labextension install @jupyter-widgets/jupyterlab-manager
 jupyter labextension install jupyter-leaflet
@@ -53,14 +53,22 @@ voila colocate.ipynb --enable_nbextensions=True --VoilaConfiguration.file_whitel
 ## Local Development:
 If you want to develop locally, clone from GitHub, `cd` to the cloned repository root directory, and run `pip install` as follows:
 ```
-git clone https://github.com/oceanhackweek/ohw19-project-co_locators.git
-cd ohw19-project-co_locators
+git clone https://github.com/ioos/colocate.git
+cd colocate
 pip install -e . --no-deps --force-reinstall
 ```
 
 
 # OceanHackWeek 2019 'co-locators' Project
+Description of the original OceanHackWeek 2019 project that led to the development of this module.  
 
+## The problem
+Co-locate oceanographic data (served via ERDDAP) by establishing constraints to use as data server query filters.  
+
+Submit the identical filter criteria to all ERDDAP servers indexed by the [awesome-erddap project](https://github.com/IrishMarineInstitute/awesome-erddap) and visualize the results.
+
+### Application example
+A user is interested in all the available oceanographic data in a region where an eddy just formed. They provide the geospatial bounds of the region and a temporal range and get an aggregated response of all available data.
 
 ## Collaborators:
 
@@ -79,11 +87,6 @@ pip install -e . --no-deps --force-reinstall
 |Mike Morley|2020|
 |Yuta Norden|2020|
 
-## The problem
-Co-locate oceanographic data by establishing constraints.
-
-### Application example
-A user is interested in all the available oceanographic data in a region where an eddy just formed. They provide the geospatial bounds of the region and a temporal range and get an aggregated response of all available data.
 
 ### Specific tasks
 - [x] Collect temporal bounds.

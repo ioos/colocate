@@ -10,9 +10,8 @@ kwargs = {
     'name': 'colocate',
     'author': 'OHW 2019 Team Co-Locators!!!',
     'author_email': 'noreply@co-locators-ohw19.org',
-    'url': 'https://github.com/oceanhackweek/ohw19-project-co_locators',
-    'description': 'A utility for aggregating co-located ERDDAP datasets in space and time and \
-        doing some cool stuff',
+    'url': 'https://github.com/ioos/colocate',
+    'description': 'A utility for aggregating co-located ERDDAP datasets in space and time. Originally developed during OceanHackWeek 2019 and migrated to U.S. IOOS for maintenance and further development.',
     'long_description': 'readme()',
     'entry_points': {
         'console_scripts': [

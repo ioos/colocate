@@ -1,4 +1,4 @@
-name: colocators-ohw19
+name: colocate
 channels:
   - conda-forge
   - defaults
