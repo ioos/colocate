@@ -1,5 +1,5 @@
-# Project Co-Locators
-
+# colocate
+Easy access to oceanographic data co-located in space and time via Python
 
 ## Preview/Run:
 
@@ -11,6 +11,7 @@
 [![binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ioos/colocate/master?filepath=notebooks%2Fcolocate-dev.ipynb)
 [![nbviewer](https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg)](https://nbviewer.jupyter.org/github/ioos/colocate/blob/master/notebooks/colocate-dev.ipynb)
 
+<img src="img/colocate_datashader.png" alt="colocate example map plot" style="width: 200px, align: center" />
 
 ## Installation:
 
