@@ -27,4 +27,4 @@ dependencies:
   - folium
   - pip
   - pip:
-    - git+https://github.com/oceanhackweek/ohw19-project-co_locators.git
+    - git+https://github.com/ioos/colocate.git
