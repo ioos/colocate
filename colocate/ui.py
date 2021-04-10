@@ -41,23 +41,27 @@ dates = widgets.SelectionRangeSlider(
 )
 
 
+out = widgets.Output()
+
+
+@out.capture()
 def on_button_clicked(_):
     global kw, df
 
+    clear_output()
     if coords:
         kw = get_data()
         df = run.ui_query(kw)
         if df.shape[0] == 0:
-            msg = 'No data returned... select different filter criteria'
+            msg = '\nNo data returned... select different filter criteria'
         else:
             df.dropna(subset=['tabledap'], inplace=True)
-            msg = 'Found {} datasets'.format(df.shape[0])
+            msg = '\nFound {} datasets'.format(df.shape[0])
 
     else:
-        msg = 'Please, select some area'
+        msg = '\nPlease, select some area'
 
     with out:
-        clear_output()
         print(msg)
 
 
@@ -91,8 +95,6 @@ def get_data():
 
 
 btn = widgets.Button(description='Search servers')
-
-out = widgets.Output()
 
 btn.on_click(on_button_clicked)
 
