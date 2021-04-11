@@ -25,6 +25,7 @@ dependencies:
   - palettable
   - iris
   - folium
+  - joblib
   - pip
   - pip:
     - git+https://github.com/ioos/colocate.git

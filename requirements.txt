@@ -19,3 +19,4 @@ numpy
 palettable
 #iris
 folium
+joblib
